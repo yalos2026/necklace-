@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beaded Dreams | Авторские украшения из бисера</title>
+  <meta name="description" content="Уникальные украшения из бисера ручной работы. Колье, серьги, браслеты, диадемы."/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #9b59b6;
+      --secondary: #e91e63;
+      --accent: #ff6b9d;
+      --dark: #2d1b4e;
+      --light: #faf6f1;
+      --gold: #d4af37;
+      --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      --gradient-3: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      background: var(--light);
+      color: var(--dark);
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ========== HEADER ========== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(rgba(45, 27, 78, 0.7), rgba(45, 27, 78, 0.7)),
+                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%239b59b6" fill-opacity="0.3" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(233, 30, 99, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(155, 89, 182, 0.2) 0%, transparent 50%);
+      animation: float 15s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 20px;
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 30px;
+      border-radius: 50px;
+      color: white;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease 0.2s both;
+      line-height: 1.1;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-size: 0.6em;
+      font-weight: 300;
+      letter-spacing: 8px;
+      margin-top: 15px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.9);
+      font-style: italic;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn {
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--gradient-2);
+      color: white;
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(233, 30, 99, 0.6);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      padding: 15px 50px;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .navbar.scrolled .logo {
+      color: var(--dark);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .navbar.scrolled .nav-links a {
+      color: var(--dark);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-2);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ========== CATALOG SECTION ========== */
+    .catalog {
+      padding: 120px 5%;
+      background: var(--light);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      color: var(--dark);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      color: #666;
+      font-style: italic;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ========== FILTERS ========== */
+    .filters {
+      max-width: 1200px;
+      margin: 0 auto 50px;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      align-items: end;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .filter-group label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #666;
+    }
+
+    .filter-group select,
+    .filter-group input {
+      padding: 12px 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .filter-group select:focus,
+    .filter-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.1);
+    }
+
+    /* ========== PRODUCTS GRID ========== */
+    .products-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.1) 0%, rgba(233, 30, 99, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .product-card:hover::before {
+      opacity: 1;
+    }
+
+    .product-image {
+      position: relative;
+      height: 450px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.1);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--gradient-2);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+
+    .product-info {
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+      background: white;
+    }
+
+    .product-category {
+      font-size: 12px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--dark);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .product-description {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .product-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .product-price .currency {
+      font-size: 18px;
+      vertical-align: super;
+    }
+
+    .btn-view {
+      padding: 12px 30px;
+      background: var(--gradient-1);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-view:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    /* ========== ABOUT SECTION ========== */
+    .about {
+      padding: 120px 5%;
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.05) 0%, rgba(233, 30, 99, 0.05) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about::before {
+      content: '🌸';
+      position: absolute;
+      font-size: 400px;
+      opacity: 0.03;
+      top: -100px;
+      right: -100px;
+      animation: rotate 60s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .about-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-images {
+      position: relative;
+    }
+
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-image:nth-child(2) {
+      position: absolute;
+      bottom: -40px;
+      right: -40px;
+      width: 70%;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      color: var(--dark);
+      margin-bottom: 30px;
+      line-height: 1.2;
+    }
+
+    .about-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .feature-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .feature-text h4 {
+      font-size: 16px;
+      color: var(--dark);
+      margin-bottom: 5px;
+    }
+
+    .feature-text p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 5% 40px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 25px;
+      color: var(--accent);
+    }
+
+    .footer-column p,
+    .footer-column a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      line-height: 1.8;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--gradient-2);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 968px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-image:nth-child(2) {
+        display: none;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ========== LOADING ANIMATION ========== */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-bead {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-2);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      animation: pulse 1.5s ease-in-out infinite;
+      box-shadow: 0 0 30px rgba(233, 30, 99, 0.6);
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .loader-text {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      letter-spacing: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-bead"></div>
+      <div class="loader-text">Beaded Dreams</div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="logo">Beaded<span>Dreams</span></a>
+    <ul class="nav-links">
+      <li><a href="#home">Главная</a></li>
+      <li><a href="#catalog">Каталог</a></li>
+      <li><a href="#about">О мастере</a></li>
+      <li><a href="#contact">Контакты</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge">Handmade with Love</div>
+      <h1>
+        Украшения из бисера
+        <span>где каждое изделие — произведение искусства</span>
+      </h1>
+      <p class="hero-subtitle">
+        Уникальные украшения, созданные с душой и вдохновением природы
+      </p>
+      <div class="hero-buttons">
+        <a href="#catalog" class="btn btn-primary">
+          <i class="fas fa-gem"></i>
+          Смотреть каталог
+        </a>
+        <a href="#about" class="btn btn-secondary">
+          <i class="fas fa-heart"></i>
+          О мастерстве
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="catalog" id="catalog">
+    <div class="section-header">
+      <div class="section-tag">Коллекция</div>
+      <h2 class="section-title">Авторские украшения</h2>
+      <p class="section-subtitle">
+        Каждое украшение создано вручную с использованием качественного бисера, кристаллов и натуральных материалов
+      </p>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label for="category">Категория</label>
+          <select id="category">
+            <option value="all">Все украшения</option>
+            <option value="necklace">Колье и ожерелья</option>
+            <option value="earrings">Серьги</option>
+            <option value="bracelet">Браслеты</option>
+            <option value="tiara">Диадемы</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="sortBy">Сортировать по</label>
+          <select id="sortBy">
+            <option value="date">Дате добавления</option>
+            <option value="price-asc">Цене (возрастание)</option>
+            <option value="price-desc">Цене (убывание)</option>
+            <option value="name">Названию</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="priceRange">Цена до</label>
+          <input type="range" id="priceRange" min="0" max="10000" step="500" value="10000">
+          <span id="priceValue">10 000 ₽</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Product 1 -->
+      <div class="product-card" data-category="necklace" data-price="4500" data-name="Фиолетовая мечта" data-date="2024-01-15">
+        <div class="product-image">
+          <span class="product-badge">Новинка</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%239b59b6' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%239b59b6' text-anchor='middle'%3EФиолетовое колье с розами%3C/text%3E%3C/svg%3E" alt="Фиолетовое колье">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Колье</div>
+          <h3 class="product-title">Фиолетовая мечта</h3>
+          <p class="product-description">
+            Роскошное колье с фиолетовыми розами, жемчугом и кристаллами Swarovski. Идеально для особого случая.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>4,500
+            </div>
+            <a href="product-purple-dream.html" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-category="earrings" data-price="2800" data-name="Нежность утра" data-date="2024-01-10">
+        <div class="product-image">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23e91e63' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23e91e63' text-anchor='middle'%3EРозовые серьги%3C/text%3E%3C/svg%3E" alt="Серьги">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Серьги</div>
+          <h3 class="product-title">Нежность утра</h3>
+          <p class="product-description">
+            Лёгкие воздушные серьги с розовыми кристаллами и жемчугом. Длина 7 см.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>2,800
+            </div>
+            <a href="#" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-category="bracelet" data-price="3200" data-name="Лавандовый сад" data-date="2024-01-05">
+        <div class="product-image">
+          <span class="product-badge">Хит</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23667eea' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23667eea' text-anchor='middle'%3EБраслет лаванда%3C/text%3E%3C/svg%3E" alt="Браслет">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Браслет</div>
+          <h3 class="product-title">Лавандовый сад</h3>
+          <p class="product-description">
+            Изящный браслет с лавандовыми цветами и золотистым бисером. Регулируемая длина.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>3,200
+            </div>
+            <a href="#" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card" data-category="tiara" data-price="8900" data-name="Королевская диадема" data-date="2023-12-28">
+        <div class="product-image">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23d4af37' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23d4af37' text-anchor='middle'%3EДиадема%3C/text%3E%3C/svg%3E" alt="Диадема">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Диадема</div>
+          <h3 class="product-title">Королевская диадема</h3>
+          <p class="product-description">
+            Великолепная диадема с кристаллами и жемчугом. Идеальна для невесты или выпускного.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>8,900
+            </div>
+            <a href="#" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card" data-category="necklace" data-price="5600" data-name="Огненная страсть" data-date="2023-12-20">
+        <div class="product-image">
+          <span class="product-badge">Limited</span>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%23f5576c' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%23f5576c' text-anchor='middle'%3EКрасное колье%3C/text%3E%3C/svg%3E" alt="Колье">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Колье</div>
+          <h3 class="product-title">Огненная страсть</h3>
+          <p class="product-description">
+            Яркое колье в красно-золотых тонах с кристаллами и бисером. Ширина 8 см.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>5,600
+            </div>
+            <a href="#" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card" data-category="earrings" data-price="3100" data-name="Морская волна" data-date="2023-12-15">
+        <div class="product-image">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 600'%3E%3Crect fill='%2300bcd4' opacity='0.2' width='400' height='600'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='24' fill='%2300bcd4' text-anchor='middle'%3EБирюзовые серьги%3C/text%3E%3C/svg%3E" alt="Серьги">
+        </div>
+        <div class="product-info">
+          <div class="product-category">Серьги</div>
+          <h3 class="product-title">Морская волна</h3>
+          <p class="product-description">
+            Серьги в морском стиле с бирюзовым бисером и кристаллами. Длина 6 см.
+          </p>
+          <div class="product-footer">
+            <div class="product-price">
+              <span class="currency">₽</span>3,100
+            </div>
+            <a href="#" class="btn-view">
+              Подробнее <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <div class="about-images">
+        <div class="about-image">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%239b59b6' opacity='0.3' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%239b59b6' text-anchor='middle'%3EФото мастера за работой%3C/text%3E%3C/svg%3E" alt="Мастер">
+        </div>
+        <div class="about-image">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'%3E%3Crect fill='%23e91e63' opacity='0.3' width='400' height='500'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='%23e91e63' text-anchor='middle'%3EПроцесс создания%3C/text%3E%3C/svg%3E" alt="Процесс">
+        </div>
+      </div>
+      
+      <div class="about-text">
+        <h2>Создаю украшения с любовью и вдохновением</h2>
+        <p>
+          Меня зовут [Ваше Имя], и я создаю уникальные украшения из бисера уже более 10 лет. Каждое изделие — это маленькая история, рассказанная через цвет, форму и текстуру.
+        </p>
+        <p>
+          Вдохновляюсь природой, цветами, морем и звёздным небом. Люблю экспериментировать с техниками и материалами, создавая по-настоящему уникальные вещи.
+        </p>
+        
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-hand-sparkles"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Ручная работа</h4>
+              <p>Каждое изделие создано вручную</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-gem"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Качественные материалы</h4>
+              <p>Чешский бисер, кристаллы Swarovski</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Индивидуальный подход</h4>
+              <p>Возможно изготовление на заказ</p>
+            </div>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </div>
+            <div class="feature-text">
+              <h4>Доставка по миру</h4>
+              <p>Отправляю в любую точку</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Beaded Dreams</h3>
+        <p>
+          Авторские украшения из бисера ручной работы. Создаю красоту с любовью и вдохновением.
+        </p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-vk"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Контакты</h3>
+        <p>
+          <i class="fas fa-envelope"></i> email@example.com<br>
+          <i class="fas fa-phone"></i> +7 (XXX) XXX-XX-XX<br>
+          <i class="fas fa-map-marker-alt"></i> г. Москва
+        </p>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Разделы</h3>
+        <p>
+          <a href="#catalog">Каталог украшений</a><br>
+          <a href="#about">О мастере</a><br>
+          <a href="#">Индивидуальный заказ</a><br>
+          <a href="#">Доставка и оплата</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Beaded Dreams. Все права защищены. Сделано с <i class="fas fa-heart" style="color: #e91e63;"></i> и вдохновением</p>
+    </div>
+  </footer>
+
+  <script>
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1500);
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Price range slider
+    const priceRange = document.getElementById('priceRange');
+    const priceValue = document.getElementById('priceValue');
+    
+    priceRange.addEventListener('input', (e) => {
+      priceValue.textContent = `${parseInt(e.target.value).toLocaleString()} ₽`;
+      filterProducts();
+    });
+
+    // Filter and sort
+    const categoryFilter = document.getElementById('category');
+    const sortByFilter = document.getElementById('sortBy');
+
+    [categoryFilter, sortByFilter].forEach(filter => {
+      filter.addEventListener('change', filterProducts);
+    });
+
+    function filterProducts() {
+      const products = document.querySelectorAll('.product-card');
+      const category = categoryFilter.value;
+      const sortBy = sortByFilter.value;
+      const maxPrice = parseInt(priceRange.value);
+
+      let productsArray = Array.from(products);
+
+      // Filter by category and price
+      productsArray = productsArray.filter(product => {
+        const productCategory = product.dataset.category;
+        const productPrice = parseInt(product.dataset.price);
+        
+        const categoryMatch = category === 'all' || productCategory === category;
+        const priceMatch = productPrice <= maxPrice;
+        
+        return categoryMatch && priceMatch;
+      });
+
+      // Sort
+      productsArray.sort((a, b) => {
+        switch(sortBy) {
+          case 'price-asc':
+            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+          case 'price-desc':
+            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+          case 'name':
+            return a.dataset.name.localeCompare(b.dataset.name);
+          case 'date':
+          default:
+            return new Date(b.dataset.date) - new Date(a.dataset.date);
+        }
+      });
+
+      // Reorder DOM
+      const grid = document.getElementById('productsGrid');
+      productsArray.forEach(product => {
+        grid.appendChild(product);
+      });
+
+      // Animation
+      productsArray.forEach((product, index) => {
+        product.style.opacity = '0';
+        product.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          product.style.transition = 'all 0.5s ease';
+          product.style.opacity = '1';
+          product.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
+    }
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    document.querySelectorAll('.product-card, .feature').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
