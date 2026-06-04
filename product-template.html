@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иммерсивный подиум украшений</title>
+    <style>
+        :root {
+            --soft-cream: #f4f7f5;
+            --gold: #dfb76c;
+            --text-main: #ffffff;
+            
+            /* Стихия по умолчанию (Вода) */
+            --theme-bg: #030914;
+            --theme-accent: #00f3ff;
+            --theme-glow: rgba(0, 243, 255, 0.25);
+            --theme-text-muted: #8ca3ba;
+        }
+
+        /* Огненная стихия */
+        body.theme-fire {
+            --theme-bg: #0f0303;
+            --theme-accent: #ff4500;
+            --theme-glow: rgba(255, 69, 0, 0.35);
+            --theme-text-muted: #cfa09d;
+        }
+
+        /* Цветочная стихия */
+        body.theme-flowers {
+            --theme-bg: #050f0a;
+            --theme-accent: #da70d6;
+            --theme-glow: rgba(218, 112, 214, 0.3);
+            --theme-text-muted: #a3baa8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--theme-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* ================= ЖИВЫЕ АНИМИРОВАННЫЕ СТИХИИ НА ФОНЕ ================= */
+        .background-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Волна для Воды */
+        .water-wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: radial-gradient(circle at 50% 100%, var(--theme-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        body.theme-water .water-wave { opacity: 1; animation: waveFloat 8s ease-in-out infinite alternate; }
+
+        @keyframes waveFloat {
+            0% { transform: translateY(10px) scaleY(0.9); }
+            100% { transform: translateY(-20px) scaleY(1.1); }
+        }
+
+        /* Искры для Огня */
+        .fire-sparks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        body.theme-fire .fire-sparks { opacity: 1; }
+
+        /* Падающие лепестки для Цветов */
+        .flower-petals {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        body.theme-flowers .flower-petals { opacity: 1; }
+
+        /* ================= КОНТЕНТ И ПОДИУМ ================= */
+        .back-nav {
+            max-width: 1300px;
+            width: 100%;
+            margin: 40px auto 0;
+            padding: 0 40px;
+            z-index: 10;
+        }
+
+        .back-link {
+            color: var(--theme-text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--theme-accent);
+            text-shadow: 0 0 10px var(--theme-accent);
+        }
+
+        .product-showroom {
+            max-width: 1300px;
+            margin: auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+            z-index: 10;
+            width: 100%;
+        }
+
+        /* Роскошная парящая рама для украшения */
+        .gallery-podium {
+            position: relative;
+            border-radius: 30px;
+            padding: 2px; /* Для эффекта неонового градиентного бордера */
+            background: linear-gradient(135deg, var(--theme-accent), transparent 60%, rgba(255,255,255,0.1));
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8), 0 0 50px var(--theme-glow);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gallery-podium:hover {
+            transform: translateY(-5px) rotate(0.5deg);
+            box-shadow: 0 40px 90px rgba(0,0,0,0.9), 0 0 70px var(--theme-accent);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 650px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #010409;
+            position: relative;
+        }
+
+        .main-artwork {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .gallery-podium:hover .main-artwork {
+            transform: scale(1.04);
+        }
+
+        /* Блок информации из Жидкого Стекла */
+        .info-glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 32px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .info-glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 32px;
+            background: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 40%);
+            pointer-events: none;
+        }
+
+        .tag-element {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--theme-accent);
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 0 0 15px var(--theme-glow);
+            transition: color 0.5s;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .price-display {
+            font-size: 2.2rem;
+            color: var(--gold);
+            margin-bottom: 35px;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price-display span {
+            font-size: 0.9rem;
+            color: var(--theme-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .story-paragraph {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: var(--theme-text-muted);
+            margin-bottom: 45px;
+            font-style: italic;
+            transition: color 0.5s;
+        }
+
+        /* Кнопка "Купить", сияющая изнутри */
+        .luxury-button {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: transparent;
+            border: 1px solid var(--theme-accent);
+            color: #ffffff;
+            padding: 20px 40px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 15px var(--theme-glow);
+        }
+
+        .luxury-button:hover {
+            background: var(--theme-accent);
+            color: #000000;
+            font-weight: bold;
+            box-shadow: 0 0 30px var(--theme-accent), 0 10px 20px rgba(0,0,0,0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Тест-пульт */
+        .showroom-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0,0,0,0.85);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            border-radius: 20px;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .showroom-controls span { font-size: 0.8rem; color: #777; font-weight: bold; }
+
+        .btn-core {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #111;
+            color: #fff;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .btn-core:hover { border-color: var(--gold); }
+
+        @media (max-width: 1024px) {
+            .product-showroom { grid-template-columns: 1fr; gap: 40px; padding: 20px; }
+            .image-container { height: 450px; }
+            h1 { font-size: 2.4rem; }
+            .info-glass-card { padding: 30px; }
+        }
+    </style>
+</head>
+<body class="theme-water">
+
+    <!-- Контейнер для продвинутых визуальных эффектов -->
+    <div class="background-effects">
+        <div class="water-wave"></div>
+        
+        <!-- SVG Эффект Искр для Огня -->
+        <svg class="fire-sparks" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="15%" cy="90%" r="2" fill="#ff4500">
+                <animate attributeName="cy" values="100%;-10%" dur="6s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="6s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="50%" cy="90%" r="3" fill="#ff8c00">
+                <animate attributeName="cy" values="100%;-10%" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="85%" cy="90%" r="1.5" fill="#ff0000">
+                <animate attributeName="cy" values="100%;-10%" dur="8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;0" dur="8s" repeatCount="indefinite"/>
+            </circle>
+        </svg>
+
+        <!-- SVG Эффект падающих лепестков для Цветов -->
+        <svg class="flower-petals" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#da70d6" opacity="0.3">
+                <path d="M10,0 Q20,10 10,20 Q0,10 10,0 Z">
+                    <animateTransform attributeName="transform" type="translate" values="100,-20; 200,900" dur="12s" repeatCount="indefinite"/>
+                    <animateTransform attributeName="transform" type="rotate" values="0; 360" dur="12s" repeatCount="indefinite" additive="sum"/>
+                </path>
+                <path d="M10,0 Q20,10 10,20 Q0,10 10,0 Z" fill="#ffb6c1">
+                    <animateTransform attributeName="transform" type="translate" values="600,-20; 450,900" dur="16s" repeatCount="indefinite"/>
+                    <animateTransform attributeName="transform" type="rotate" values="0; -360" dur="16s" repeatCount="indefinite" additive="sum"/>
+                </path>
+                <path d="M10,0 Q20,10 10,20 Q0,10 10,0 Z">
+                    <animateTransform attributeName="transform" type="translate" values="1100,-20; 950,900" dur="14s" repeatCount="indefinite"/>
+                    <animateTransform attributeName="transform" type="rotate" values="0; 180" dur="14s" repeatCount="indefinite" additive="sum"/>
+                </path>
+            </g>
+        </svg>
+    </div>
+
+    <div class="back-nav">
+        <a href="index.html" class="back-link">← Назад в галерею</a>
+    </div>
+
+    <main class="product-showroom">
+        <!-- Подиум (Левое крыло) -->
+        <div class="gallery-podium">
+            <div class="image-container">
+                <img id="artwork-src" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80" alt="Шедевр" class="main-artwork">
+            </div>
+        </div>
+
+        <!-- Информация из жидкого стекла (Правое крыло) -->
+        <div class="info-glass-card">
+            <div id="tag-id" class="tag-element">Святилище Стихии: Вода</div>
+            <h1 id="title-id">Браслет «Слезы Русалки»</h1>
+            
+            <div class="price-display">
+                8 900 ₽ 
+                <span>• Эксклюзив</span>
+            </div>
+            
+            <p id="desc-id" class="story-paragraph">
+                Это ювелирное творение соткано из сотен микроскопических стеклянных капель. Каждая деталь ложится на бархатную основу подобно застывшему океанскому рельефу, сверкая под лучами солнца глубокими ультрамариновыми искрами. Каждое прикосновение к нему возвращает к легендам древних морей.
+            </p>
+
+            <a href="#" class="luxury-button">Завладеть украшением</a>
+        </div>
+    </main>
+
+    <!-- Смена миров -->
+    <div class="showroom-controls">
+        <span>ПОДИУМ:</span>
+        <button class="btn-core" onclick="switchRealm('water', 'Святилище Стихии: Вода', 'Браслет «Слезы Русалки»', 'Это ювелирное творение соткано из сотен микроскопических стеклянных капель. Каждая деталь ложится на бархатную основу подобно застывшему океанскому рельефу...', 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80')">Вода</button>
+        <button class="btn-core" onclick="switchRealm('fire', 'Святилище Стихии: Огонь', 'Серьги «Танец Саламандры»', 'Энергия чистого пламени, застывшая в стекле и благородном камне. Глубокие рубиновые переливы создают завораживающий контраст с полуночно-черной бисерной вязкой...', 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=900&q=80')">Огонь</button>
+        <button class="btn-core" onclick="switchRealm('flowers', 'Святилище Стихии: Цветы', 'Колье «Сиреневая Роза»', 'Венец флористического искусства. Тончайшая ручная лепка бутонов роз, окруженная сиреневым кружевом из элитного бисера и благородным агатом в самом сердце.', 'IMG_20241203_163306_593.jpg')">Цветы</button>
+    </div>
+
+    <script>
+        function switchRealm(realm, tag, title, description, imgPath) {
+            document.body.className = 'theme-' + realm;
+            document.getElementById('tag-id').innerText = tag;
+            document.getElementById('title-id').innerText = title;
+            document.getElementById('desc-id').innerText = description;
+            
+            const mainImg = document.getElementById('artwork-src');
+            mainImg.src = imgPath;
+            mainImg.onerror = function() {
+                this.src = 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80';
+            };
+        }
+    </script>
+</body>
+</html>
