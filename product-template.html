@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир Украшения — Эксклюзивный Каталог</title>
+    <style>
+        :root {
+            --soft-cream: #f4f7f5;
+            --gold: #dfb76c;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f4f7f5;
+            --text-muted: #a3b8ad;
+            
+            /* Стихии по умолчанию (Вода) */
+            --theme-bg-1: #07131f;
+            --theme-bg-2: #0c233c;
+            --theme-accent: #3498db;
+            --theme-glow: rgba(52, 152, 219, 0.3);
+        }
+
+        /* Класс-модификатор для Огня */
+        body.theme-fire {
+            --theme-bg-1: #140505;
+            --theme-bg-2: #2d0b0b;
+            --theme-accent: #e74c3c;
+            --theme-glow: rgba(231, 76, 60, 0.4);
+            --text-muted: #e0a9a5;
+        }
+
+        /* Класс-модификатор для Цветов */
+        body.theme-flowers {
+            --theme-bg-1: #0b140e;
+            --theme-bg-2: #192c1f;
+            --theme-accent: #9b59b6;
+            --theme-glow: rgba(155, 89, 182, 0.3);
+            --text-muted: #b8a3be;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--theme-bg-1) 0%, var(--theme-bg-2) 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.8s ease;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Эффект живых частиц на заднем плане */
+        .ambient-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Навигация обратно */
+        .back-nav {
+            max-width: 1200px;
+            width: 100%;
+            margin: 30px auto 0;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .back-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        /* Главный подиум украшения */
+        .product-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            z-index: 10;
+        }
+
+        /* Рама для презентации шедевра */
+        .product-gallery {
+            position: relative;
+            border-radius: 24px;
+            padding: 15px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 40px var(--theme-glow);
+            backdrop-filter: blur(12px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .product-gallery:hover {
+            transform: scale(1.01);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 60px var(--theme-glow);
+        }
+
+        .image-wrapper {
+            width: 100%;
+            height: 550px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            position: relative;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Описание («Эльфийское стекло») */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .element-tag {
+            align-self: flex-start;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--theme-accent);
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-shadow: 0 0 10px var(--theme-glow);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            color: var(--soft-cream);
+            line-height: 1.2;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-family: sans-serif;
+            font-weight: 300;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            border-left: 2px solid var(--theme-accent);
+            padding-left: 20px;
+        }
+
+        /* Кнопка заказа / связи */
+        .order-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 18px 40px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 0 transparent;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .order-btn:hover {
+            background: var(--gold);
+            color: var(--theme-bg-1);
+            box-shadow: 0 10px 25px rgba(223, 183, 108, 0.3);
+            font-weight: bold;
+        }
+
+        /* Селектор стихий для теста (потом можно убрать, сейчас для красоты) */
+        .theme-switcher {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 100;
+            border: 1px solid var(--glass-border);
+        }
+        .theme-switcher button {
+            padding: 5px 10px;
+            margin: 2px;
+            cursor: pointer;
+            background: #222;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .product-container { grid-template-columns: 1fr; gap: 40px; }
+            .image-wrapper { height: 400px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<!-- Чтобы изменить мир, поменяйте класс ниже на: theme-water, theme-fire или theme-flowers -->
+<body class="theme-water">
+
+    <!-- Волшебные фоновые частицы -->
+    <svg class="ambient-particles" xmlns="http://www.w3.org/2000/svg">
+        <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <circle cx="20%" cy="40%" r="4" fill="var(--theme-accent)" opacity="0.3" filter="url(#glow)"/>
+        <circle cx="80%" cy="30%" r="6" fill="var(--gold)" opacity="0.2" filter="url(#glow)"/>
+        <circle cx="70%" cy="80%" r="5" fill="var(--theme-accent)" opacity="0.4" filter="url(#glow)"/>
+    </svg>
+
+    <div class="back-nav">
+        <a href="index.html" class="back-link">← Вернуться в галерею</a>
+    </div>
+
+    <main class="product-container">
+        <!-- Левая часть: Подиум с фотографией -->
+        <div class="product-gallery">
+            <div class="image-wrapper">
+                <!-- Здесь будет фото вашего украшения на соответствующем стихийном фоне -->
+                <img id="product-img" src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80" alt="Эксклюзивное украшение" class="main-image">
+            </div>
+        </div>
+
+        <!-- Правая часть: Магическое описание -->
+        <div class="product-info">
+            <div id="element-title" class="element-tag">Стихия: Вода</div>
+            <h1 id="product-name">Браслет «Слезы Русалки»</h1>
+            <div class="price">8 900 ₽</div>
+            <p class="description-text">
+                Это украшение рождено в глубинах воображения. Каждая бисеринка ложится подобно капле морской пены на побережье тайного эльфийского залива. Использование редких ограненных кристаллов заставляет изделие менять свой оттенок в зависимости от угла освещения, оживая при каждом вашем движении.
+            </p>
+            <a href="https://t.me/your_username" target="_blank" class="order-btn">Узнать о наличии / Заказать</a>
+        </div>
+    </main>
+
+    <!-- Интерактивный пульт для демонстрации смены миров (переключает стихии вживую!) -->
+    <div class="theme-switcher">
+        <p style="font-size:0.75rem; color:#aaa; margin-bottom:5px; text-align:center;">Тест миров:</p>
+        <button onclick="changeTheme('water', 'Стихия: Вода', 'Браслет «Слезы Русалки»', 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80')">Вода</button>
+        <button onclick="changeTheme('fire', 'Стихия: Огонь', 'Серьги «Танец Саламандры»', 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&w=800&q=80')">Огонь</button>
+        <button onclick="changeTheme('flowers', 'Стихия: Цветы', 'Колье «Сиреневая Роза»', 'IMG_20241203_163306_593.jpg')">Цветы</button>
+    </div>
+
+    <script>
+        function changeTheme(themeName, tagText, titleText, imgSrc) {
+            // Меняем класс у body для полной смены CSS переменных
+            document.body.className = '';
+            document.body.classList.add('theme-' + themeName);
+            
+            // Меняем тексты и картинку для демонстрации
+            document.getElementById('element-title').innerText = tagText;
+            document.getElementById('product-name').innerText = titleText;
+            
+            const img = document.getElementById('product-img');
+            img.src = imgSrc;
+            // Если ваше фото роз не найдено локально, подставим красивый цветочный фон для теста
+            img.onerror = function() {
+                this.src = 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80';
+            };
+        }
+    </script>
+</body>
+</html>
