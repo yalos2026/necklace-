@@ -383,31 +383,32 @@ nav a:hover::after { width: 100%; }
 }
 
 /* Визуал с медальоном */
+/* Визуал с медальоном */
 .artifact-visual {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 80px;
 }
 
 .medallion {
     position: relative;
-    width: min(450px, 90%);
+    width: min(580px, 95%); /* БЫЛО 450px, стало 580px */
     aspect-ratio: 1/1;
 }
 
 .medallion-glow {
     position: absolute;
-    inset: -20%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 60%);
-    filter: blur(40px);
+    inset: -25%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 60%);
+    filter: blur(50px);
     animation: breathe 4s ease-in-out infinite;
     z-index: 0;
 }
 @keyframes breathe {
     0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
+    50% { opacity: 0.85; transform: scale(1.1); }
 }
 
 .medallion-rings {
@@ -422,13 +423,13 @@ nav a:hover::after { width: 100%; }
     border: 1px solid rgba(212, 175, 55, 0.4);
 }
 .medallion-ring:nth-child(1) {
-    inset: -15px;
+    inset: -20px;
     animation: rotate 25s linear infinite;
     border-style: dashed;
     border-color: rgba(212, 175, 55, 0.5);
 }
 .medallion-ring:nth-child(2) {
-    inset: -35px;
+    inset: -45px;
     animation: rotate 35s linear infinite reverse;
     border-color: rgba(212, 175, 55, 0.25);
 }
@@ -438,7 +439,7 @@ nav a:hover::after { width: 100%; }
     top: -8px; left: 50%;
     transform: translateX(-50%);
     color: var(--accent-gold);
-    font-size: 14px;
+    font-size: 16px;
     text-shadow: 0 0 15px rgba(212, 175, 55, 1);
 }
 
@@ -451,11 +452,11 @@ nav a:hover::after { width: 100%; }
     overflow: hidden;
     z-index: 2;
     box-shadow: 
-        0 0 0 3px rgba(212, 175, 55, 0.8),
-        0 0 0 10px rgba(10, 20, 16, 0.9),
-        0 0 0 11px rgba(212, 175, 55, 0.4),
-        0 30px 80px rgba(0, 0, 0, 0.8),
-        inset 0 0 60px rgba(0, 0, 0, 0.3);
+        0 0 0 4px rgba(212, 175, 55, 0.8),
+        0 0 0 12px rgba(10, 20, 16, 0.9),
+        0 0 0 13px rgba(212, 175, 55, 0.4),
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        inset 0 0 80px rgba(0, 0, 0, 0.3);
     transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .medallion-image img {
@@ -476,14 +477,14 @@ nav a:hover::after { width: 100%; }
 /* Драгоценные камни по кругу */
 .gems-ring {
     position: absolute;
-    inset: -8px;
+    inset: -10px;
     z-index: 3;
     pointer-events: none;
 }
 .gem {
     position: absolute;
-    width: 14px;
-    height: 14px;
+    width: 18px; /* Увеличено с 14px */
+    height: 18px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, 
         rgba(255, 255, 255, 0.95) 0%, 
@@ -491,10 +492,10 @@ nav a:hover::after { width: 100%; }
         rgba(212, 175, 55, 0.8) 60%, 
         rgba(139, 105, 20, 0.9) 100%);
     box-shadow: 
-        0 0 8px rgba(244, 208, 63, 0.8),
-        0 0 15px rgba(212, 175, 55, 0.6),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+        0 0 10px rgba(244, 208, 63, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.6),
+        inset 0 -3px 5px rgba(0, 0, 0, 0.3),
+        inset 0 3px 5px rgba(255, 255, 255, 0.5);
     transform-origin: center center;
 }
 .gem::before {
@@ -525,8 +526,8 @@ nav a:hover::after { width: 100%; }
 
 /* Большие камни-акценты (4 штуки по сторонам света) */
 .gem.large {
-    width: 20px;
-    height: 20px;
+    width: 26px; /* Увеличено с 20px */
+    height: 26px;
     background: radial-gradient(circle at 30% 30%, 
         rgba(255, 255, 255, 1) 0%, 
         rgba(255, 215, 0, 0.95) 25%, 
@@ -534,11 +535,11 @@ nav a:hover::after { width: 100%; }
         rgba(218, 165, 32, 0.95) 75%, 
         rgba(184, 134, 11, 1) 100%);
     box-shadow: 
-        0 0 12px rgba(255, 215, 0, 1),
-        0 0 25px rgba(255, 165, 0, 0.8),
-        0 0 40px rgba(218, 165, 32, 0.6),
-        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
-        inset 0 3px 6px rgba(255, 255, 255, 0.7);
+        0 0 15px rgba(255, 215, 0, 1),
+        0 0 30px rgba(255, 165, 0, 0.8),
+        0 0 50px rgba(218, 165, 32, 0.6),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.4),
+        inset 0 4px 8px rgba(255, 255, 255, 0.7);
     animation: gemGlow 3s ease-in-out infinite;
 }
 @keyframes gemGlow {
@@ -546,15 +547,15 @@ nav a:hover::after { width: 100%; }
     50% { filter: brightness(1.3); }
 }
 
-.gem.large:nth-child(1) { top: -5px; left: 50%; transform: translateX(-50%); }
-.gem.large:nth-child(4) { top: 50%; left: calc(100% - 5px); transform: translateY(-50%); }
-.gem.large:nth-child(7) { top: calc(100% - 5px); left: 50%; transform: translateX(-50%); }
-.gem.large:nth-child(10) { top: 50%; left: -5px; transform: translateY(-50%); }
+.gem.large:nth-child(1) { top: -7px; left: 50%; transform: translateX(-50%); }
+.gem.large:nth-child(4) { top: 50%; left: calc(100% - 7px); transform: translateY(-50%); }
+.gem.large:nth-child(7) { top: calc(100% - 7px); left: 50%; transform: translateX(-50%); }
+.gem.large:nth-child(10) { top: 50%; left: -7px; transform: translateY(-50%); }
 
 /* Руны по кругу */
 .runes {
     position: absolute;
-    inset: -60px;
+    inset: -70px;
     z-index: 1;
     animation: rotate 60s linear infinite;
 }
@@ -981,7 +982,7 @@ footer {
     .artifact:nth-child(even) .artifact-details { justify-content: center; }
     
     .artifact-visual { padding: 20px; }
-    .medallion { width: 80%; max-width: 350px; }
+    .medallion { width: 80%; max-width: 420px; }
     .runes { display: none; }
     
     .tree-container { height: 500px; }
