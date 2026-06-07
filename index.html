@@ -31,7 +31,7 @@ body {
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: none; /* Скрываем стандартный курсор */
+    cursor: none;
 }
 
 /* === КАСТОМНЫЙ КУРСОР === */
@@ -59,7 +59,7 @@ body {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* === ФОН === */
+/* === ФОН (МЕНЬШЕ ЗАТЕМНЕНИЯ) === */
 .nature-hero-bg {
     position: fixed;
     inset: 0;
@@ -73,14 +73,13 @@ body {
     width: auto; height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    filter: brightness(0.55) saturate(1.1);
+    filter: brightness(0.75) saturate(1.1); /* Меньше затемнения */
 }
 .bg-overlay {
     position: absolute;
     inset: 0;
     background: 
-        radial-gradient(ellipse at center, transparent 0%, rgba(10, 20, 16, 0.4) 60%, rgba(10, 20, 16, 0.95) 100%),
-        linear-gradient(180deg, rgba(10, 20, 16, 0.3) 0%, transparent 30%, transparent 70%, rgba(10, 20, 16, 0.95) 100%);
+        radial-gradient(ellipse at center, transparent 0%, rgba(10, 20, 16, 0.2) 70%, rgba(10, 20, 16, 0.85) 100%);
     z-index: 2;
 }
 
@@ -443,6 +442,7 @@ nav a:hover::after { width: 100%; }
     text-shadow: 0 0 15px rgba(212, 175, 55, 1);
 }
 
+/* === РАМКА С ДРАГОЦЕННЫМИ КАМНЯМИ === */
 .medallion-image {
     position: relative;
     width: 100%;
@@ -451,9 +451,9 @@ nav a:hover::after { width: 100%; }
     overflow: hidden;
     z-index: 2;
     box-shadow: 
-        0 0 0 2px rgba(212, 175, 55, 0.6),
-        0 0 0 8px rgba(10, 20, 16, 0.8),
-        0 0 0 9px rgba(212, 175, 55, 0.3),
+        0 0 0 3px rgba(212, 175, 55, 0.8),
+        0 0 0 10px rgba(10, 20, 16, 0.9),
+        0 0 0 11px rgba(212, 175, 55, 0.4),
         0 30px 80px rgba(0, 0, 0, 0.8),
         inset 0 0 60px rgba(0, 0, 0, 0.3);
     transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
@@ -472,6 +472,84 @@ nav a:hover::after { width: 100%; }
     transform: scale(1.15);
     filter: saturate(1.2) contrast(1.1) brightness(1);
 }
+
+/* Драгоценные камни по кругу */
+.gems-ring {
+    position: absolute;
+    inset: -8px;
+    z-index: 3;
+    pointer-events: none;
+}
+.gem {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.95) 0%, 
+        rgba(244, 208, 63, 0.9) 30%, 
+        rgba(212, 175, 55, 0.8) 60%, 
+        rgba(139, 105, 20, 0.9) 100%);
+    box-shadow: 
+        0 0 8px rgba(244, 208, 63, 0.8),
+        0 0 15px rgba(212, 175, 55, 0.6),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    transform-origin: center center;
+}
+.gem::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    filter: blur(1px);
+}
+
+/* Позиционирование 12 камней по кругу */
+.gem:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+.gem:nth-child(2) { top: 6.7%; left: 75%; }
+.gem:nth-child(3) { top: 25%; left: 93.3%; }
+.gem:nth-child(4) { top: 50%; left: 100%; transform: translateY(-50%); }
+.gem:nth-child(5) { top: 75%; left: 93.3%; }
+.gem:nth-child(6) { top: 93.3%; left: 75%; }
+.gem:nth-child(7) { top: 100%; left: 50%; transform: translateX(-50%); }
+.gem:nth-child(8) { top: 93.3%; left: 25%; }
+.gem:nth-child(9) { top: 75%; left: 6.7%; }
+.gem:nth-child(10) { top: 50%; left: 0; transform: translateY(-50%); }
+.gem:nth-child(11) { top: 25%; left: 6.7%; }
+.gem:nth-child(12) { top: 6.7%; left: 25%; }
+
+/* Большие камни-акценты (4 штуки по сторонам света) */
+.gem.large {
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 1) 0%, 
+        rgba(255, 215, 0, 0.95) 25%, 
+        rgba(255, 165, 0, 0.9) 50%, 
+        rgba(218, 165, 32, 0.95) 75%, 
+        rgba(184, 134, 11, 1) 100%);
+    box-shadow: 
+        0 0 12px rgba(255, 215, 0, 1),
+        0 0 25px rgba(255, 165, 0, 0.8),
+        0 0 40px rgba(218, 165, 32, 0.6),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.4),
+        inset 0 3px 6px rgba(255, 255, 255, 0.7);
+    animation: gemGlow 3s ease-in-out infinite;
+}
+@keyframes gemGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.gem.large:nth-child(1) { top: -5px; left: 50%; transform: translateX(-50%); }
+.gem.large:nth-child(4) { top: 50%; left: calc(100% - 5px); transform: translateY(-50%); }
+.gem.large:nth-child(7) { top: calc(100% - 5px); left: 50%; transform: translateX(-50%); }
+.gem.large:nth-child(10) { top: 50%; left: -5px; transform: translateY(-50%); }
 
 /* Руны по кругу */
 .runes {
@@ -636,16 +714,16 @@ nav a:hover::after { width: 100%; }
 }
 .action-button:hover .arrow { transform: translateX(5px); }
 
-/* === СОЗВЕЗДИЕ === */
-.constellation {
+/* === ЗОЛОТОЕ ДЕРЕВО === */
+.golden-tree {
     position: relative;
     z-index: 10;
     padding: 150px 5%;
     text-align: center;
-    background: radial-gradient(ellipse at center, rgba(139, 111, 212, 0.05) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
 }
 
-.constellation-label {
+.tree-label {
     font-family: var(--font-serif);
     font-size: 11px;
     letter-spacing: 6px;
@@ -653,7 +731,7 @@ nav a:hover::after { width: 100%; }
     color: var(--accent-gold);
     margin-bottom: 20px;
 }
-.constellation-title {
+.tree-title {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 300;
@@ -662,54 +740,90 @@ nav a:hover::after { width: 100%; }
     color: var(--text-light);
 }
 
-.star-map {
+.tree-container {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    height: 500px;
+    height: 600px;
 }
 
-.star {
+.tree-svg {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-gold-bright) 0%, var(--accent-gold) 50%, transparent 100%);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
-    animation: twinkle 3s ease-in-out infinite;
-    cursor: none;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
-.star::after {
-    content: attr(data-name);
+
+.tree-branch {
+    fill: none;
+    stroke: url(#goldGradient);
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+}
+
+.tree-leaf {
     position: absolute;
-    top: 20px; left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: var(--cb-transition);
+}
+
+.tree-leaf-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(244, 208, 63, 0.9) 40%, 
+        rgba(212, 175, 55, 0.8) 70%, 
+        rgba(139, 105, 20, 0.9) 100%);
+    box-shadow: 
+        0 0 15px rgba(244, 208, 63, 0.8),
+        0 0 30px rgba(212, 175, 55, 0.5),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.3),
+        inset 0 3px 6px rgba(255, 255, 255, 0.6);
+    position: relative;
+    transition: transform 0.4s ease;
+}
+.tree-leaf-icon::before {
+    content: '✦';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.tree-leaf-name {
     font-family: var(--font-serif);
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent-gold);
     white-space: nowrap;
-    opacity: 0.7;
-}
-@keyframes twinkle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.8); }
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    transition: color 0.3s ease;
 }
 
-.star-1 { top: 20%; left: 15%; animation-delay: 0s; }
-.star-2 { top: 35%; left: 45%; animation-delay: 0.5s; }
-.star-3 { top: 15%; left: 70%; animation-delay: 1s; }
-.star-4 { top: 60%; left: 30%; animation-delay: 1.5s; }
-.star-5 { top: 70%; left: 65%; animation-delay: 2s; }
-
-.star-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
-    transform-origin: left center;
-    pointer-events: none;
+.tree-leaf:hover .tree-leaf-icon {
+    transform: scale(1.2) rotate(10deg);
 }
+.tree-leaf:hover .tree-leaf-name {
+    color: var(--accent-gold-bright);
+    text-shadow: 0 0 20px rgba(244, 208, 63, 1);
+}
+
+/* Позиционирование листьев на ветвях */
+.leaf-1 { top: 15%; left: 10%; }
+.leaf-2 { top: 25%; left: 30%; }
+.leaf-3 { top: 10%; left: 55%; }
+.leaf-4 { top: 35%; left: 75%; }
+.leaf-5 { top: 55%; left: 20%; }
 
 /* === FOOTER === */
 footer {
@@ -841,7 +955,8 @@ footer {
     .medallion { width: 80%; max-width: 350px; }
     .runes { display: none; }
     
-    .star-map { height: 400px; }
+    .tree-container { height: 500px; }
+    .tree-leaf-name { font-size: 11px; letter-spacing: 2px; }
     
     .footer-bottom { flex-direction: column; gap: 15px; }
 }
@@ -867,7 +982,7 @@ footer {
     <a href="#" class="logo">Necklaces</a>
     <nav>
         <a href="#artifacts">Артефакты</a>
-        <a href="#constellation">Созвездие</a>
+        <a href="#tree">Древо</a>
         <a href="#">Контакты</a>
     </nav>
 </header>
@@ -920,6 +1035,20 @@ footer {
                     <div class="medallion-image">
                         <img src="images/photo_2026-06-07_10-38-49.jpg" alt="Сиреневая Роза">
                     </div>
+                    <div class="gems-ring">
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                    </div>
                 </div>
             </div>
             <div class="artifact-info">
@@ -964,6 +1093,20 @@ footer {
                     </div>
                     <div class="medallion-image">
                         <img src="images/photo_2026-06-07_10-38-35.jpg" alt="Побеги Омни">
+                    </div>
+                    <div class="gems-ring">
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
                     </div>
                 </div>
             </div>
@@ -1010,6 +1153,20 @@ footer {
                     <div class="medallion-image">
                         <img src="images/photo_2026-06-07_10-38-16.jpg" alt="Лесная Капля">
                     </div>
+                    <div class="gems-ring">
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                    </div>
                 </div>
             </div>
             <div class="artifact-info">
@@ -1055,6 +1212,20 @@ footer {
                     <div class="medallion-image">
                         <img src="images/photo_2026-06-07_10-39-00.jpg" alt="Звёздная Лоза">
                     </div>
+                    <div class="gems-ring">
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                        <div class="gem large"></div>
+                        <div class="gem"></div>
+                        <div class="gem"></div>
+                    </div>
                 </div>
             </div>
             <div class="artifact-info">
@@ -1089,16 +1260,50 @@ footer {
         </article>
     </section>
 
-    <!-- СОЗВЕЗДИЕ -->
-    <section class="constellation" id="constellation">
-        <div class="constellation-label">✦ Карта Неба ✦</div>
-        <h2 class="constellation-title">Созвездие ваших украшений</h2>
-        <div class="star-map">
-            <div class="star star-1" data-name="Сиреневая Роза"></div>
-            <div class="star star-2" data-name="Побеги Омни"></div>
-            <div class="star star-3" data-name="Лесная Капля"></div>
-            <div class="star star-4" data-name="Звёздная Лоза"></div>
-            <div class="star star-5" data-name="Скоро..."></div>
+    <!-- ЗОЛОТОЕ ДЕРЕВО -->
+    <section class="golden-tree" id="tree">
+        <div class="tree-label">✦ Древо Коллекции ✦</div>
+        <h2 class="tree-title">Золотое древо украшений</h2>
+        <div class="tree-container">
+            <svg class="tree-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+                <defs>
+                    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f4d03f;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Ствол -->
+                <path class="tree-branch" d="M 500 600 Q 500 500 500 400" />
+                <!-- Ветви -->
+                <path class="tree-branch" d="M 500 400 Q 400 350 300 300" />
+                <path class="tree-branch" d="M 500 400 Q 450 320 400 250" />
+                <path class="tree-branch" d="M 500 400 Q 550 320 600 250" />
+                <path class="tree-branch" d="M 500 400 Q 600 350 700 300" />
+                <path class="tree-branch" d="M 500 400 Q 480 300 450 200" />
+            </svg>
+            
+            <!-- Листья-ссылки -->
+            <a href="#artifact-1" class="tree-leaf leaf-1">
+                <div class="tree-leaf-icon"></div>
+                <span class="tree-leaf-name">Сиреневая Роза</span>
+            </a>
+            <a href="#artifact-2" class="tree-leaf leaf-2">
+                <div class="tree-leaf-icon"></div>
+                <span class="tree-leaf-name">Побеги Омни</span>
+            </a>
+            <a href="#artifact-3" class="tree-leaf leaf-3">
+                <div class="tree-leaf-icon"></div>
+                <span class="tree-leaf-name">Лесная Капля</span>
+            </a>
+            <a href="#artifact-4" class="tree-leaf leaf-4">
+                <div class="tree-leaf-icon"></div>
+                <span class="tree-leaf-name">Звёздная Лоза</span>
+            </a>
+            <a href="#" class="tree-leaf leaf-5">
+                <div class="tree-leaf-icon"></div>
+                <span class="tree-leaf-name">Скоро...</span>
+            </a>
         </div>
     </section>
 </main>
@@ -1140,8 +1345,7 @@ function animateTrail() {
 }
 animateTrail();
 
-// Увеличение курсора при наведении на интерактивные элементы
-document.querySelectorAll('a, button, .medallion, .star').forEach(el => {
+document.querySelectorAll('a, button, .medallion, .tree-leaf').forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursor.style.width = '40px';
         cursor.style.height = '40px';
@@ -1207,42 +1411,6 @@ setInterval(createFirefly, 800);
 for (let i = 0; i < 10; i++) {
     setTimeout(createFirefly, i * 300);
 }
-
-// === ЛИНИИ СОЗВЕЗДИЯ ===
-function drawConstellationLines() {
-    const map = document.querySelector('.star-map');
-    const stars = document.querySelectorAll('.star');
-    const connections = [[0,1],[1,2],[1,3],[3,4]];
-    
-    connections.forEach(([a, b]) => {
-        const starA = stars[a].getBoundingClientRect();
-        const starB = stars[b].getBoundingClientRect();
-        const mapRect = map.getBoundingClientRect();
-        
-        const x1 = starA.left + starA.width/2 - mapRect.left;
-        const y1 = starA.top + starA.height/2 - mapRect.top;
-        const x2 = starB.left + starB.width/2 - mapRect.left;
-        const y2 = starB.top + starB.height/2 - mapRect.top;
-        
-        const length = Math.sqrt((x2-x1)**2 + (y2-y1)**2);
-        const angle = Math.atan2(y2-y1, x2-x1) * 180 / Math.PI;
-        
-        const line = document.createElement('div');
-        line.classList.add('star-line');
-        line.style.left = x1 + 'px';
-        line.style.top = y1 + 'px';
-        line.style.width = length + 'px';
-        line.style.transform = `rotate(${angle}deg)`;
-        map.appendChild(line);
-    });
-}
-window.addEventListener('load', () => {
-    setTimeout(drawConstellationLines, 100);
-});
-window.addEventListener('resize', () => {
-    document.querySelectorAll('.star-line').forEach(l => l.remove());
-    drawConstellationLines();
-});
 </script>
 
 </body>
