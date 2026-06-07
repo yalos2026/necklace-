@@ -720,34 +720,34 @@ nav a:hover::after { width: 100%; }
 .golden-tree {
     position: relative;
     z-index: 10;
-    padding: 100px 5%;
+    padding: 80px 3%;
     text-align: center;
-    background: radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.15) 0%, transparent 75%);
     overflow: hidden;
 }
 
 .tree-label {
     font-family: var(--font-serif, serif);
-    font-size: 12px;
-    letter-spacing: 6px;
+    font-size: 11px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--accent-gold, #d4af37);
-    margin-bottom: 20px;
-    opacity: 0.8;
+    margin-bottom: 15px;
+    opacity: 0.7;
 }
 
 .tree-title {
     font-family: var(--font-display, sans-serif);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
     font-weight: 300;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     color: var(--text-light, #f5f5f5);
-    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 15px rgba(0,0,0,0.6);
 }
 
 .tree-container {
     position: relative;
-    max-width: 1000px;
+    max-width: 1100px; /* Немного расширили контейнер для размаха */
     margin: 0 auto;
     height: 800px;
 }
@@ -757,39 +757,39 @@ nav a:hover::after { width: 100%; }
     inset: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Чтобы SVG не мешал кликам по ссылкам */
+    pointer-events: none; /* Важно, чтобы кликались ссылки, а не прозрачный SVG */
 }
 
-/* Золотые листья-ссылки */
+/* Стилизация иконок-листьев */
 .tree-leaf {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
-    z-index: 12;
-    transform: translate(-50%, -50%); /* Центрирование по координатам */
+    z-index: 15;
+    transform: translate(-50%, -50%);
 }
 
 .tree-leaf-icon {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
     border-radius: 50% 0% 50% 0%;
     background: radial-gradient(circle at 35% 35%, 
         #ffffff 0%, 
-        #f4d03f 30%, 
-        #d4af37 60%, 
+        #f4d03f 25%, 
+        #d4af37 55%, 
         #8b6914 100%);
     box-shadow: 
-        0 0 20px rgba(244, 208, 63, 0.6),
-        0 0 40px rgba(212, 175, 55, 0.4),
-        inset -2px -2px 6px rgba(0, 0, 0, 0.4),
-        inset 2px 2px 6px rgba(255, 255, 255, 0.8);
+        0 0 20px rgba(244, 208, 63, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.3),
+        inset -2px -2px 5px rgba(0, 0, 0, 0.4),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.7);
     position: relative;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
     transform: rotate(45deg);
-    animation: leafSway 4s ease-in-out infinite;
+    animation: leafSway 4.5s ease-in-out infinite;
 }
 
 .tree-leaf-icon::before {
@@ -798,29 +798,29 @@ nav a:hover::after { width: 100%; }
     top: 50%; left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
     color: #ffffff;
-    font-size: 18px;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 .tree-leaf-name {
     font-family: var(--font-serif, serif);
-    font-size: 13px;
+    font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--accent-gold, #d4af37);
     white-space: nowrap;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 10px rgba(212,175,55,0.4);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9), 0 0 10px rgba(212,175,55,0.3);
     transition: color 0.4s ease, transform 0.4s ease;
 }
 
-/* Эффекты наведения */
+/* Ховер-эффекты */
 .tree-leaf:hover .tree-leaf-icon {
     transform: rotate(45deg) scale(1.25);
     box-shadow: 
-        0 0 35px rgba(244, 208, 63, 0.9),
-        0 0 70px rgba(212, 175, 55, 0.7),
-        inset -2px -2px 6px rgba(0, 0, 0, 0.2),
-        inset 2px 2px 6px rgba(255, 255, 255, 1);
+        0 0 30px rgba(244, 208, 63, 0.8),
+        0 0 60px rgba(212, 175, 55, 0.6),
+        inset -1px -1px 4px rgba(0, 0, 0, 0.2),
+        inset 2px 2px 5px rgba(255, 255, 255, 1);
 }
 
 .tree-leaf:hover .tree-leaf-name {
@@ -829,104 +829,30 @@ nav a:hover::after { width: 100%; }
     transform: scale(1.05);
 }
 
-/* ТОЧНОЕ ПОЗИЦИОНИРОВАНИЕ НА КОНЦАХ ВЕТВЕЙ (в % от контейнера 1000x800) */
-.leaf-1 { top: 62%; left: 9%; }   /* Левая нижняя */
-.leaf-2 { top: 32%; left: 6%; }   /* Левая средняя */
-.leaf-3 { top: 10%; left: 10%; }  /* Левая верхняя */
-.leaf-4 { top: 10%; left: 90%; }  /* Правая верхняя */
-.leaf-5 { top: 32%; left: 94%; }  /* Правая средняя */
+/* ТОЧНОЕ ПОЗИЦИОНИРОВАНИЕ НА КОНЦАХ ВЕТВЕЙ (Обновлено под новый SVG) */
+.leaf-1 { top: 64%; left: 3%; }   /* Левая нижняя ветвь */
+.leaf-2 { top: 29%; left: 1%; }   /* Левая средняя ветвь */
+.leaf-3 { top: 9%; left: 4%; }    /* Левая верхняя ветвь */
+.leaf-4 { top: 9%; left: 96%; }   /* ДОТЯНУЛИ: Правая верхняя ветвь */
+.leaf-5 { top: 29%; left: 99%; }  /* ДОТЯНУЛИ: Правая средняя ветвь */
 
-/* Анимация плавного покачивания */
+/* Плавная анимация покачивания */
 @keyframes leafSway {
     0%, 100% { transform: rotate(45deg) translate(0, 0); }
-    50% { transform: rotate(43deg) translate(-3px, -5px); }
+    50% { transform: rotate(42deg) translate(-2px, -4px); }
 }
 
-.tree-leaf:nth-child(2) .tree-leaf-icon { animation-delay: 0.7s; }
-.tree-leaf:nth-child(3) .tree-leaf-icon { animation-delay: 1.4s; }
-.tree-leaf:nth-child(4) .tree-leaf-icon { animation-delay: 2.1s; }
-.tree-leaf:nth-child(5) .tree-leaf-icon { animation-delay: 2.8s; }
+.tree-leaf:nth-child(2) .tree-leaf-icon { animation-delay: 0.8s; }
+.tree-leaf:nth-child(3) .tree-leaf-icon { animation-delay: 1.6s; }
+.tree-leaf:nth-child(4) .tree-leaf-icon { animation-delay: 2.4s; }
+.tree-leaf:nth-child(5) .tree-leaf-icon { animation-delay: 3.2s; }
 
-/* Адаптивность */
+/* Адаптивность под планшеты/мобильные */
 @media (max-width: 960px) {
     .tree-container { height: 600px; }
-    .tree-leaf-icon { width: 40px; height: 40px; }
-    .tree-leaf-icon::before { font-size: 14px; }
-    .tree-leaf-name { font-size: 11px; letter-spacing: 1px; }
-}
-
-/* === FOOTER === */
-footer {
-    position: relative;
-    z-index: 10;
-    padding: 100px 8% 60px;
-    background: linear-gradient(to top, rgba(5, 10, 8, 0.95), transparent);
-    text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
-}
-.footer-ornament {
-    font-family: var(--font-serif);
-    color: var(--accent-gold);
-    font-size: 24px;
-    margin-bottom: 30px;
-    letter-spacing: 15px;
-    opacity: 0.6;
-}
-.footer-title {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    color: var(--text-light);
-}
-.footer-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-}
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 40px;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-    font-family: var(--font-serif);
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.6;
-}
-
-/* === ПАДАЮЩИЕ ЛЕПЕСТКИ === */
-.petals-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 50;
-    overflow: hidden;
-}
-.petal {
-    position: absolute;
-    top: -50px;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, #fdfbf7 0%, #d4af37 40%, #8a6d1c 100%);
-    border-radius: 0% 100% 0% 100%;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6), inset 0 0 4px rgba(255, 255, 255, 0.8);
-    opacity: 0;
-}
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-    10% { opacity: 0.9; }
-    25% { transform: translateY(25vh) rotate(90deg) translateX(30px); }
-    50% { transform: translateY(50vh) rotate(180deg) translateX(-20px); }
-    75% { transform: translateY(75vh) rotate(270deg) translateX(40px); }
-    100% { transform: translateY(110vh) rotate(360deg) translateX(0); opacity: 0; }
+    .tree-leaf-icon { width: 38px; height: 38px; }
+    .tree-leaf-icon::before { font-size: 12px; }
+    .tree-leaf-name { font-size: 10px; letter-spacing: 1px; }
 }
 
 /* === СВЕТЛЯЧКИ === */
@@ -1299,16 +1225,16 @@ footer {
             <defs>
                 <linearGradient id="goldGradient" x1="0%" y1="100%" x2="100%" y2="0%">
                     <stop offset="0%" style="stop-color:#8b6914;stop-opacity:1" />
-                    <stop offset="25%" style="stop-color:#b8941f;stop-opacity:1" />
+                    <stop offset="30%" style="stop-color:#b8941f;stop-opacity:1" />
                     <stop offset="50%" style="stop-color:#f4d03f;stop-opacity:1" />
                     <stop offset="75%" style="stop-color:#d4af37;stop-opacity:1" />
                     <stop offset="100%" style="stop-color:#aa7c11;stop-opacity:1" />
                 </linearGradient>
                 
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="4" result="blur"/>
                     <feComponentTransfer in="blur" result="glow1">
-                        <feFuncA type="linear" slope="0.6"/>
+                        <feFuncA type="linear" slope="0.5"/>
                     </feComponentTransfer>
                     <feMerge>
                         <feMergeNode in="glow1"/>
@@ -1318,38 +1244,35 @@ footer {
             </defs>
             
             <g filter="url(#glow)" fill="url(#goldGradient)">
-                <path d="M430,760 C380,770 330,785 280,800 C340,775 390,760 440,750 Z" />
-                <path d="M460,765 C420,780 370,795 320,800 C380,780 420,770 455,760 Z" />
-                <path d="M540,760 C590,770 650,785 720,800 C650,775 590,765 545,755 Z" />
-                <path d="M510,765 C550,780 610,795 670,800 C600,780 550,770 515,760 Z" />
+                <path d="M440,770 C390,775 320,785 250,800 C320,780 380,770 445,765 Z" />
+                <path d="M460,772 C420,782 360,792 300,800 C360,785 410,775 455,768 Z" />
+                <path d="M540,768 C585,775 640,785 700,800 C640,792 580,782 540,772 Z" />
+                <path d="M560,765 C620,770 680,780 750,800 C680,785 610,775 560,770 Z" />
 
-                <path d="M430,760 C440,680 410,580 430,480 C445,410 465,340 480,260 L515,260 C505,340 490,410 480,480 C470,580 520,680 540,760 C485,770 470,770 430,760 Z" />
+                <path d="M445,765 C455,670 425,570 445,470 C460,400 475,320 485,250 L515,250 C505,320 490,400 475,470 C455,570 495,670 540,765 C490,770 480,770 445,765 Z" />
 
-                <path d="M440,510 C380,490 310,490 240,520 C180,545 130,580 90,620 C120,560 170,520 230,490 C300,460 380,465 435,485 Z" />
-                <path d="M250,500 C200,490 150,500 110,530 C150,485 210,475 260,490 Z" />
-                <path d="M180,515 C140,520 110,540 85,570 C110,535 150,520 185,515 Z" />
-
-                <path d="M450,420 C380,390 300,340 210,310 C160,295 110,300 60,320 C110,280 170,275 230,295 C310,320 380,370 455,395 Z" />
-                <path d="M260,325 C210,290 150,270 90,260 C140,255 200,270 250,305 Z" />
-                <path d="M170,300 C130,275 80,270 40,280 C80,255 130,260 165,285 Z" />
-
-                <path d="M470,310 C420,250 360,180 290,140 C230,105 160,95 100,100 C160,80 240,90 310,125 C370,160 430,230 480,285 Z" />
-                <path d="M330,165 C280,125 210,110 140,115 C200,95 270,110 320,145 Z" />
-                <path d="M240,120 C190,95 140,95 90,110 C140,85 200,85 235,105 Z" />
-
-                <path d="M485,260 C470,190 440,130 390,80 C350,40 290,20 230,10 C300,10 360,30 410,70 C455,110 485,170 495,240 Z" />
-                <path d="M500,240 C510,170 540,110 590,70 C640,30 700,10 770,10 C710,20 650,40 610,80 C560,130 530,190 515,260 Z" />
+                <path d="M448,500 C380,480 290,485 210,520 C140,550 80,590 30,640 C70,575 130,530 200,495 C285,455 375,455 442,475 Z" />
+                <path d="M230,495 C170,480 110,490 60,520 C110,475 170,465 230,485 Z" />
                 
-                <path d="M520,285 C570,230 630,160 690,125 C760,90 840,80 900,100 C840,95 770,105 710,140 C640,180 580,250 530,310 Z" />
-                <path d="M670,165 C720,145 790,110 860,115 C790,110 720,125 670,145 Z" />
-                <path d="M760,120 C800,105 860,85 910,110 C860,95 810,95 765,105 Z" />
+                <path d="M452,410 C380,380 290,330 190,295 C130,275 70,275 10,290 C60,250 130,245 190,265 C285,295 375,350 452,380 Z" />
+                <path d="M220,305 C160,270 100,250 30,240 C90,230 150,245 210,280 Z" />
 
-                <path d="M545,395 C620,370 690,320 770,295 C830,275 890,280 940,320 C890,300 840,295 790,310 C700,340 620,390 550,420 Z" />
-                <path d="M740,305 C790,270 850,255 910,260 C850,270 790,290 740,325 Z" />
-                <path d="M835,285 C870,260 920,255 960,280 C920,270 870,275 830,300 Z" />
+                <path d="M470,300 C410,240 340,170 260,130 C190,95 110,85 40,90 C110,65 190,75 270,110 C340,145 410,215 475,275 Z" />
+                <path d="M290,150 C230,110 160,95 80,100 C150,80 220,95 280,130 Z" />
 
-                <path d="M565,485 C620,465 700,460 770,490 C830,520 880,560 910,620 C870,580 820,545 760,520 C690,490 620,490 560,510 Z" />
-                <path d="M740,490 C790,475 850,485 890,530 C850,500 800,490 750,500 Z" />
+                <path d="M485,250 C470,180 430,120 370,70 C320,30 250,10 180,0 C260,5 330,25 390,65 C445,105 480,165 495,230 Z" />
+                <path d="M515,230 C530,165 565,105 620,65 C680,25 750,5 830,0 C760,10 690,30 640,70 C580,120 540,180 525,250 Z" />
+                
+                <path d="M525,275 C590,215 660,145 730,110 C810,75 890,65 960,90 C890,85 810,95 740,130 C660,170 590,240 530,300 Z" />
+                <path d="M720,130 C780,95 850,80 920,100 C840,95 770,110 710,150 Z" />
+                <path d="M800,105 C850,85 910,75 970,95 C910,85 850,90 795,115 Z" />
+
+                <path d="M548,380 C625,350 715,295 810,265 C870,245 940,250 990,290 C930,275 870,275 810,295 C710,330 620,380 548,410 Z" />
+                <path d="M780,280 C840,245 900,230 960,240 C900,250 840,270 790,305 Z" />
+                <path d="M860,265 C910,240 960,235 1000,260 C950,250 900,250 855,275 Z" />
+
+                <path d="M558,475 C625,455 715,455 800,495 C870,530 930,575 970,640 C920,590 860,550 790,520 C710,485 620,480 552,500 Z" />
+                <path d="M770,485 C830,465 890,475 940,520 C890,490 830,480 770,495 Z" />
             </g>
         </svg>
         
