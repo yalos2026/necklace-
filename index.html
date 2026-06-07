@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCALES — Living Nature & Art</title>
+    <title>NECKLACES</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400&display=swap');
 
@@ -30,21 +30,44 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- ШИКАРНЫЙ ЖИВОЙ ЗАДНИЙ ПЛАН --- */
-        .nature-hero-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            /* Полноэкранное атмосферное фото туманного неонового леса */
-            background-image: linear-gradient(to bottom, rgba(15, 25, 18, 0.65), rgba(15, 25, 18, 0.85)), 
-                              url(images/fd677406-31b3-4afb-b8a4-1b1e78ab1620.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Эффект параллакса при скролле */
-            z-index: 1;
-        }
+        /* Контейнер для видео */
+        /* Контейнер для фона */
+.nature-hero-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Стили для картинки-фона (работает как video или background-size: cover) */
+.bg-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover; /* Ключевое свойство: заполняет блок, сохраняя пропорции */
+    z-index: 1;
+}
+
+/* Затемнение (опционально, раскомментируйте в HTML, если нужно) */
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Сделал затемнение чуть мягче, чтобы фото было видно, но текст читался */
+    background: linear-gradient(to bottom, rgba(15, 25, 18, 0.3), rgba(15, 25, 18, 0.6));
+    z-index: 2;
+    pointer-events: none; /* Позволяет кликать сквозь затемнение, если нужно */
+}
 
         /* Навигация */
         header {
@@ -97,13 +120,13 @@
         }
 
         .hero-title {
-            font-family: var(--font-serif);
-            font-size: calc(3.5rem + 3vw);
-            line-height: 1.1;
-            max-width: 1100px;
-            font-weight: 400;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+    font-family: var(--font-serif);
+    font-size: calc(2.5rem + 2vw); /* Было 3.5rem + 3vw, стало меньше */
+    line-height: 1.1;
+    max-width: 900px; /* Можно немного сузить блок для лучшей читаемости */
+    font-weight: 400;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
 
         .hero-title span {
             color: var(--accent-gold);
@@ -130,69 +153,85 @@
         }
 
         /* --- НЕОБЫЧНОЕ ПОЯВЛЕНИЕ: ОПТИЧЕСКАЯ МАСКА (КАПЛЯ) --- */
-        .magic-reveal-box {
-            width: 46%;
-            position: relative;
-        }
+        /* === КАРТОЧКА С ЖЕМЧУЖНОЙ РАМКОЙ (ИСПРАВЛЕННАЯ) === */
 
-        .mask-wrapper {
-            width: 100%;
-            aspect-ratio: 1/1; /* Квадратная область для идеальной геометрии капли */
-            overflow: hidden;
-            
-            /* Изначально картинка обрезана в форме идеального круга (капли росы) по центру */
-            clip-path: circle(35% at 50% 50%);
-            
-            transition: clip-path 1.4s cubic-bezier(0.19, 1, 0.22, 1),
-                        box-shadow 1s ease;
-        }
+.magic-reveal-box {
+    width: 46%;
+    position: relative;
+}
 
-        .mask-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.15);
-            filter: saturate(0.8) contrast(1.1);
-            transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),
-                        filter 1s ease;
-        }
+.mask-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1;
+    position: relative;
+    overflow: visible; /* ВАЖНО: разрешаем рамке и свечению выходить за границы */
+    transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
 
-        /* Эффект при наведении: маска "расправляется", заполняя весь прямоугольник, а фото приближается */
-        .magic-reveal-box:hover .mask-wrapper {
-            /* Круг расширяется до 100%, превращаясь в полноценное прямоугольное фото */
-            clip-path: circle(75% at 50% 50%);
-        }
+/* 1. САМО ФОТО (обрезается, но не обрезает рамку) */
+.mask-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Обрезаем фото чуть-чуть, чтобы оставить место для бусин на краю */
+    clip-path: circle(50% at 50% 50%);
+    transform: scale(1.15);
+    filter: saturate(0.8) contrast(1.1);
+    transition: clip-path 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+                transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+                filter 1s ease;
+    position: relative;
+    z-index: 1;
+}
 
-        .magic-reveal-box:hover .mask-wrapper img {
-            transform: scale(1);
-            filter: saturate(1.1) contrast(1);
-        }
+/* 2. СЛОЙ С ЖЕМЧУЖНОЙ РАМКОЙ (лежит ПОВЕРХ фото) */
+.mask-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none; /* Не мешает наведению */
 
-        /* Подпись-подсказка возле капли */
-        .reveal-hint {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            font-family: var(--font-sans);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 20px;
-            border-radius: 50px;
-            background: rgba(15, 25, 18, 0.6);
-            backdrop-filter: blur(4px);
-        }
+    /* Рисуем объемные 3D-бусины: блик -> тело жемчуга -> золотая тень -> нить */
+    background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 255, 255, 0.95) 0deg 4deg,      /* Резкий белый блик */
+        rgba(244, 235, 210, 0.9) 4deg 10deg,      /* Светлое кремовое тело */
+        rgba(212, 175, 55, 0.8) 10deg 16deg,      /* Золотистый отлив */
+        rgba(80, 60, 15, 0.9) 16deg 20deg,        /* Глубокая тень между бусинами */
+        transparent 20deg 24deg                   /* Промежуток (нить) */
+    );
 
-        .magic-reveal-box:hover .reveal-hint {
-            opacity: 0;
-        }
+    /* Вырезаем центр, оставляя только кольцо по самому краю (с 94% до 100%) */
+    -webkit-mask: radial-gradient(transparent 94%, black 95%);
+    mask: radial-gradient(transparent 94%, black 95%);
 
-        /* Описание экспонатов */
+    /* Магическое свечение применяется ТОЛЬКО к контуру бусин */
+    filter: drop-shadow(0 0 3px rgba(212, 175, 55, 0.8))
+            drop-shadow(0 0 1px rgba(255, 255, 255, 0.9));
+
+    /* Начальное состояние: рамка чуть меньше, чтобы совпадать с маленьким фото */
+    transform: scale(0.72);
+    transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1),
+                filter 0.4s ease;
+}
+
+/* === ЭФФЕКТ ПРИ НАВЕДЕНИИ === */
+
+/* Фото расширяется */
+.magic-reveal-box:hover .mask-wrapper img {
+    clip-path: circle(73% at 50% 50%);
+    transform: scale(1);
+    filter: saturate(1.1) contrast(1);
+}
+
+/* Рамка из бусин расширяется синхронно и начинает ярче светиться */
+.magic-reveal-box:hover .mask-wrapper::after {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 1))
+            drop-shadow(0 0 2px rgba(255, 255, 255, 1));
+}
         .details-box {
             width: 46%;
         }
@@ -263,43 +302,50 @@
             .hero-title { font-size: 2.8rem; }
             .item-row, .item-row:nth-child(even) { flex-direction: column; gap: 40px; margin-bottom: 140px; }
             .magic-reveal-box, .details-box { width: 100%; }
-            .mask-wrapper { aspect-ratio: 4/5; clip-path: none; } /* На мобилках показываем сразу */
+            .mask-wrapper { aspect-ratio: 4/5; clip-path: none; }
             .reveal-hint { display: none; }
             .item-title { font-size: 34px; }
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Задний план (Параллакс-лес) -->
-    <div class="nature-hero-bg"></div>
+    <!-- Фоновое видео -->
+    <div class="nature-hero-bg">
+    <!-- Пока используем только картинку -->
+    <img src="images/site.png" alt="Фоновое изображение" class="bg-image">
+
+
+</div>
 
     <header>
-        <a href="#" class="logo">Scales</a>
+        <a href="#" class="logo">Necklaces</a>
         <nav>
-            <a href="#">Экспонаты</a>
-            <a href="#">Философия</a>
+            <a href="#">Украшения</a>
+            <a href="#">Контакты</a>
         </nav>
     </header>
 
     <main>
-        <!-- Входной экран -->
         <section class="hero">
             <h1 class="hero-title">
-                Ювелирные формы, рожденные в самом <span>сердце</span> первозданного леса.
+                АВТОРСКИЕ
+                <br>
+                УКРАШЕНИЯ:
+                <br>
+                <span>необычные и
+                <br>
+                неповторимые</span>
             </h1>
         </section>
 
-        <!-- Галерея -->
         <section class="showroom">
-
-            <!-- Ряд 1: Сиреневая роза -->
             <div class="item-row">
                 <div class="magic-reveal-box">
                     <div class="mask-wrapper">
-                        <img src="IMG_20241203_163306_593.jpg" alt="Сиреневая Роза" onerror="this.src='https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=1200&auto=format&fit=crop'">
+                        <img src="images/photo_2026-06-07_10-38-49.jpg">
                     </div>
-                    <div class="reveal-hint">Коснуться</div>
                 </div>
                 <div class="details-box">
                     <span class="item-meta">Piece I</span>
@@ -309,13 +355,11 @@
                 </div>
             </div>
 
-            <!-- Ряд 2: Золотой элемент -->
             <div class="item-row">
                 <div class="magic-reveal-box">
                     <div class="mask-wrapper">
-                        <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?q=80&w=1200&auto=format&fit=crop" alt="Золотые ветви">
+                        <img src="images/photo_2026-06-07_10-38-35.jpg">
                     </div>
-                    <div class="reveal-hint">Коснуться</div>
                 </div>
                 <div class="details-box">
                     <span class="item-meta">Piece II</span>
@@ -325,12 +369,39 @@
                 </div>
             </div>
 
+            <div class="item-row">
+                <div class="magic-reveal-box">
+                    <div class="mask-wrapper">
+                        <img src="images/photo_2026-06-07_10-38-16.jpg">
+                    </div>
+                </div>
+                <div class="details-box">
+                    <span class="item-meta">Piece II</span>
+                    <h2 class="item-title">Побеги Омни</h2>
+                    <p class="item-text">Линейный концепт, в точности повторяющий пластику дикой виноградной лозы. Живое переплетение матового золота и фактурных изгибов, созданное для интеграции в повседневный образ.</p>
+                    <a href="#" class="action-button">Рассмотреть ближе</a>
+                </div>
+            </div>
+
+            <div class="item-row">
+                <div class="magic-reveal-box">
+                    <div class="mask-wrapper">
+                        <img src="images/photo_2026-06-07_10-39-00.jpg">
+                    </div>
+                </div>
+                <div class="details-box">
+                    <span class="item-meta">Piece II</span>
+                    <h2 class="item-title">Побеги Омни</h2>
+                    <p class="item-text">Линейный концепт, в точности повторяющий пластику дикой виноградной лозы. Живое переплетение матового золота и фактурных изгибов, созданное для интеграции в повседневный образ.</p>
+                    <a href="#" class="action-button">Рассмотреть ближе</a>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Scales Studio.</p>
-        <p>Дикая эстетика металла</p>
+        <p>© 2026 Beaded necklaces</p>
+        <p>Дикая эстетика бисера</p>
     </footer>
 
 </body>
