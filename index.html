@@ -715,29 +715,33 @@ nav a:hover::after { width: 100%; }
 .action-button:hover .arrow { transform: translateX(5px); }
 
 /* === ЗОЛОТОЕ ДЕРЕВО === */
+/* === ЗОЛОТОЕ ДЕРЕВО === */
 .golden-tree {
     position: relative;
     z-index: 10;
-    padding: 150px 5%;
+    padding: 100px 5%;
     text-align: center;
-    background: radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center bottom, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+    overflow: hidden;
 }
 
 .tree-label {
-    font-family: var(--font-serif);
-    font-size: 11px;
+    font-family: var(--font-serif, serif);
+    font-size: 12px;
     letter-spacing: 6px;
     text-transform: uppercase;
-    color: var(--accent-gold);
+    color: var(--accent-gold, #d4af37);
     margin-bottom: 20px;
+    opacity: 0.8;
 }
+
 .tree-title {
-    font-family: var(--font-display);
+    font-family: var(--font-display, sans-serif);
     font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 300;
-    font-style: italic;
-    margin-bottom: 80px;
-    color: var(--text-light);
+    margin-bottom: 60px;
+    color: var(--text-light, #f5f5f5);
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 .tree-container {
@@ -752,32 +756,7 @@ nav a:hover::after { width: 100%; }
     inset: 0;
     width: 100%;
     height: 100%;
-}
-
-/* Ствол дерева */
-.tree-trunk {
-    fill: url(#trunkGradient);
-    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
-}
-
-/* Текстура коры */
-.trunk-bark {
-    opacity: 0.3;
-}
-
-/* Основные ветви */
-.tree-branch-main {
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
-}
-
-/* Средние ветви */
-.tree-branch-secondary {
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
-}
-
-/* Мелкие веточки */
-.tree-twig {
-    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
+    pointer-events: none; /* Чтобы SVG не мешал кликам по ссылкам */
 }
 
 /* Золотые листья-ссылки */
@@ -788,96 +767,91 @@ nav a:hover::after { width: 100%; }
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    transition: var(--cb-transition);
-    z-index: 10;
+    z-index: 12;
+    transform: translate(-50%, -50%); /* Центрирование по координатам */
 }
 
 .tree-leaf-icon {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
     border-radius: 50% 0% 50% 0%;
-    background: radial-gradient(circle at 30% 30%, 
-        rgba(255, 255, 255, 0.95) 0%, 
-        rgba(244, 208, 63, 0.95) 25%, 
-        rgba(212, 175, 55, 0.9) 50%, 
-        rgba(184, 148, 31, 0.95) 75%, 
-        rgba(139, 105, 20, 1) 100%);
+    background: radial-gradient(circle at 35% 35%, 
+        #ffffff 0%, 
+        #f4d03f 30%, 
+        #d4af37 60%, 
+        #8b6914 100%);
     box-shadow: 
-        0 0 25px rgba(244, 208, 63, 1),
-        0 0 50px rgba(212, 175, 55, 0.7),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.3),
-        inset 0 5px 10px rgba(255, 255, 255, 0.8);
+        0 0 20px rgba(244, 208, 63, 0.6),
+        0 0 40px rgba(212, 175, 55, 0.4),
+        inset -2px -2px 6px rgba(0, 0, 0, 0.4),
+        inset 2px 2px 6px rgba(255, 255, 255, 0.8);
     position: relative;
-    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
     transform: rotate(45deg);
     animation: leafSway 4s ease-in-out infinite;
 }
+
 .tree-leaf-icon::before {
     content: '✦';
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 22px;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    color: #ffffff;
+    font-size: 18px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .tree-leaf-name {
-    font-family: var(--font-serif);
+    font-family: var(--font-serif, serif);
     font-size: 13px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--accent-gold);
+    color: var(--accent-gold, #d4af37);
     white-space: nowrap;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
-    transition: all 0.4s ease;
-    transform: rotate(0deg);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8), 0 0 10px rgba(212,175,55,0.4);
+    transition: color 0.4s ease, transform 0.4s ease;
 }
 
+/* Эффекты наведения */
 .tree-leaf:hover .tree-leaf-icon {
-    transform: rotate(45deg) scale(1.35);
+    transform: rotate(45deg) scale(1.25);
     box-shadow: 
-        0 0 40px rgba(244, 208, 63, 1),
-        0 0 80px rgba(212, 175, 55, 0.9),
-        inset 0 -5px 10px rgba(0, 0, 0, 0.3),
-        inset 0 5px 10px rgba(255, 255, 255, 1);
+        0 0 35px rgba(244, 208, 63, 0.9),
+        0 0 70px rgba(212, 175, 55, 0.7),
+        inset -2px -2px 6px rgba(0, 0, 0, 0.2),
+        inset 2px 2px 6px rgba(255, 255, 255, 1);
 }
+
 .tree-leaf:hover .tree-leaf-name {
-    color: var(--accent-gold-bright);
-    text-shadow: 0 0 30px rgba(244, 208, 63, 1);
-    transform: scale(1.15);
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(244, 208, 63, 1);
+    transform: scale(1.05);
 }
 
-/* Позиционирование листьев на концах ветвей */
-.leaf-1 { top: 42%; left: 13%; }
-.leaf-2 { top: 18%; left: 14%; }
-.leaf-3 { top: 3%; left: 33%; }
-.leaf-4 { top: 3%; left: 63%; }
-.leaf-5 { top: 18%; left: 82%; }
+/* ТОЧНОЕ ПОЗИЦИОНИРОВАНИЕ НА КОНЦАХ ВЕТВЕЙ (в % от контейнера 1000x800) */
+.leaf-1 { top: 62%; left: 9%; }   /* Левая нижняя */
+.leaf-2 { top: 32%; left: 6%; }   /* Левая средняя */
+.leaf-3 { top: 10%; left: 10%; }  /* Левая верхняя */
+.leaf-4 { top: 10%; left: 90%; }  /* Правая верхняя */
+.leaf-5 { top: 32%; left: 94%; }  /* Правая средняя */
 
-/* Анимация покачивания листьев */
+/* Анимация плавного покачивания */
 @keyframes leafSway {
-    0%, 100% { transform: rotate(45deg) translateY(0); }
-    50% { transform: rotate(45deg) translateY(-8px); }
+    0%, 100% { transform: rotate(45deg) translate(0, 0); }
+    50% { transform: rotate(43deg) translate(-3px, -5px); }
 }
 
-.tree-leaf:nth-child(2) .tree-leaf-icon { animation-delay: 0.5s; }
-.tree-leaf:nth-child(3) .tree-leaf-icon { animation-delay: 1s; }
-.tree-leaf:nth-child(4) .tree-leaf-icon { animation-delay: 1.5s; }
-.tree-leaf:nth-child(5) .tree-leaf-icon { animation-delay: 2s; }
+.tree-leaf:nth-child(2) .tree-leaf-icon { animation-delay: 0.7s; }
+.tree-leaf:nth-child(3) .tree-leaf-icon { animation-delay: 1.4s; }
+.tree-leaf:nth-child(4) .tree-leaf-icon { animation-delay: 2.1s; }
+.tree-leaf:nth-child(5) .tree-leaf-icon { animation-delay: 2.8s; }
 
-/* Адаптивность для дерева */
+/* Адаптивность */
 @media (max-width: 960px) {
-    .tree-container { height: 700px; }
-    .tree-leaf-icon { width: 45px; height: 45px; }
-    .tree-leaf-icon::before { font-size: 18px; }
-    .tree-leaf-name { font-size: 11px; letter-spacing: 2px; }
-    
-    .leaf-1 { top: 44%; left: 10%; }
-    .leaf-2 { top: 20%; left: 11%; }
-    .leaf-3 { top: 5%; left: 30%; }
-    .leaf-4 { top: 5%; left: 66%; }
-    .leaf-5 { top: 20%; left: 85%; }
+    .tree-container { height: 600px; }
+    .tree-leaf-icon { width: 40px; height: 40px; }
+    .tree-leaf-icon::before { font-size: 14px; }
+    .tree-leaf-name { font-size: 11px; letter-spacing: 1px; }
 }
 
 /* === FOOTER === */
@@ -1322,106 +1296,62 @@ footer {
     <div class="tree-container">
         <svg class="tree-svg" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid meet">
             <defs>
-                <!-- Градиент для ствола -->
-                <linearGradient id="trunkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <linearGradient id="goldGradient" x1="0%" y1="100%" x2="100%" y2="0%">
                     <stop offset="0%" style="stop-color:#8b6914;stop-opacity:1" />
-                    <stop offset="30%" style="stop-color:#d4af37;stop-opacity:1" />
+                    <stop offset="25%" style="stop-color:#b8941f;stop-opacity:1" />
                     <stop offset="50%" style="stop-color:#f4d03f;stop-opacity:1" />
-                    <stop offset="70%" style="stop-color:#d4af37;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#8b6914;stop-opacity:1" />
+                    <stop offset="75%" style="stop-color:#d4af37;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#aa7c11;stop-opacity:1" />
                 </linearGradient>
                 
-                <!-- Градиент для ветвей -->
-                <linearGradient id="branchGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#f4d03f;stop-opacity:1" />
-                    <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#b8941f;stop-opacity:1" />
-                </linearGradient>
-                
-                <!-- Свечение -->
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                    <feComponentTransfer in="blur" result="glow1">
+                        <feFuncA type="linear" slope="0.6"/>
+                    </feComponentTransfer>
                     <feMerge>
-                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="glow1"/>
                         <feMergeNode in="SourceGraphic"/>
                     </feMerge>
                 </filter>
-                
-                <!-- Текстура коры -->
-                <pattern id="barkTexture" x="0" y="0" width="20" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M 0 0 Q 5 10 0 20 Q -5 30 0 40" stroke="rgba(139, 105, 20, 0.3)" stroke-width="0.5" fill="none"/>
-                    <path d="M 10 0 Q 15 10 10 20 Q 5 30 10 40" stroke="rgba(139, 105, 20, 0.2)" stroke-width="0.5" fill="none"/>
-                </pattern>
             </defs>
             
-            <!-- Корни дерева -->
-            <g class="tree-roots">
-                <path d="M 450 800 Q 420 780 400 770 Q 380 760 370 750" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M 470 800 Q 450 785 430 775" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-                <path d="M 550 800 Q 580 780 600 770 Q 620 760 630 750" stroke="url(#trunkGradient)" stroke-width="8" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-                <path d="M 530 800 Q 550 785 570 775" stroke="url(#trunkGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <g filter="url(#glow)" fill="url(#goldGradient)">
+                <path d="M430,760 C380,770 330,785 280,800 C340,775 390,760 440,750 Z" />
+                <path d="M460,765 C420,780 370,795 320,800 C380,780 420,770 455,760 Z" />
+                <path d="M540,760 C590,770 650,785 720,800 C650,775 590,765 545,755 Z" />
+                <path d="M510,765 C550,780 610,795 670,800 C600,780 550,770 515,760 Z" />
+
+                <path d="M430,760 C440,680 410,580 430,480 C445,410 465,340 480,260 L515,260 C505,340 490,410 480,480 C470,580 520,680 540,760 C485,770 470,770 430,760 Z" />
+
+                <path d="M440,510 C380,490 310,490 240,520 C180,545 130,580 90,620 C120,560 170,520 230,490 C300,460 380,465 435,485 Z" />
+                <path d="M250,500 C200,490 150,500 110,530 C150,485 210,475 260,490 Z" />
+                <path d="M180,515 C140,520 110,540 85,570 C110,535 150,520 185,515 Z" />
+
+                <path d="M450,420 C380,390 300,340 210,310 C160,295 110,300 60,320 C110,280 170,275 230,295 C310,320 380,370 455,395 Z" />
+                <path d="M260,325 C210,290 150,270 90,260 C140,255 200,270 250,305 Z" />
+                <path d="M170,300 C130,275 80,270 40,280 C80,255 130,260 165,285 Z" />
+
+                <path d="M470,310 C420,250 360,180 290,140 C230,105 160,95 100,100 C160,80 240,90 310,125 C370,160 430,230 480,285 Z" />
+                <path d="M330,165 C280,125 210,110 140,115 C200,95 270,110 320,145 Z" />
+                <path d="M240,120 C190,95 140,95 90,110 C140,85 200,85 235,105 Z" />
+
+                <path d="M485,260 C470,190 440,130 390,80 C350,40 290,20 230,10 C300,10 360,30 410,70 C455,110 485,170 495,240 Z" />
+                <path d="M500,240 C510,170 540,110 590,70 C640,30 700,10 770,10 C710,20 650,40 610,80 C560,130 530,190 515,260 Z" />
+                
+                <path d="M520,285 C570,230 630,160 690,125 C760,90 840,80 900,100 C840,95 770,105 710,140 C640,180 580,250 530,310 Z" />
+                <path d="M670,165 C720,145 790,110 860,115 C790,110 720,125 670,145 Z" />
+                <path d="M760,120 C800,105 860,85 910,110 C860,95 810,95 765,105 Z" />
+
+                <path d="M545,395 C620,370 690,320 770,295 C830,275 890,280 940,320 C890,300 840,295 790,310 C700,340 620,390 550,420 Z" />
+                <path d="M740,305 C790,270 850,255 910,260 C850,270 790,290 740,325 Z" />
+                <path d="M835,285 C870,260 920,255 960,280 C920,270 870,275 830,300 Z" />
+
+                <path d="M565,485 C620,465 700,460 770,490 C830,520 880,560 910,620 C870,580 820,545 760,520 C690,490 620,490 560,510 Z" />
+                <path d="M740,490 C790,475 850,485 890,530 C850,500 800,490 750,500 Z" />
             </g>
-            
-            <!-- Основной ствол -->
-            <path class="tree-trunk" d="M 450 800 Q 445 750 440 700 Q 435 650 438 600 Q 440 550 445 500 Q 448 450 450 400 Q 452 350 455 300 Q 458 250 460 200 Q 462 180 465 160 L 535 160 Q 538 180 540 200 Q 542 250 545 300 Q 548 350 550 400 Q 552 450 555 500 Q 560 550 562 600 Q 565 650 560 700 Q 555 750 550 800 Z" />
-            
-            <!-- Текстура ствола -->
-            <path class="trunk-bark" d="M 450 800 Q 445 750 440 700 Q 435 650 438 600 Q 440 550 445 500 Q 448 450 450 400 Q 452 350 455 300 Q 458 250 460 200 Q 462 180 465 160 L 535 160 Q 538 180 540 200 Q 542 250 545 300 Q 548 350 550 400 Q 552 450 555 500 Q 560 550 562 600 Q 565 650 560 700 Q 555 750 550 800 Z" fill="url(#barkTexture)" opacity="0.4"/>
-            
-            <!-- Основные ветви первого порядка -->
-            <!-- Левая нижняя ветвь -->
-            <path class="tree-branch-main" d="M 455 450 Q 400 430 350 410 Q 300 390 250 370 Q 200 350 150 340" stroke="url(#branchGradient)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Левая средняя ветвь -->
-            <path class="tree-branch-main" d="M 458 380 Q 410 350 360 310 Q 310 270 260 230 Q 210 190 160 160" stroke="url(#branchGradient)" stroke-width="11" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Левая верхняя ветвь -->
-            <path class="tree-branch-main" d="M 462 300 Q 430 260 400 210 Q 370 160 340 110 Q 310 70 280 40" stroke="url(#branchGradient)" stroke-width="10" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Центральная левая ветвь -->
-            <path class="tree-branch-main" d="M 465 240 Q 450 200 430 150 Q 410 100 390 60 Q 370 30 350 10" stroke="url(#branchGradient)" stroke-width="9" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Центральная правая ветвь -->
-            <path class="tree-branch-main" d="M 535 240 Q 550 200 570 150 Q 590 100 610 60 Q 630 30 650 10" stroke="url(#branchGradient)" stroke-width="9" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Правая верхняя ветвь -->
-            <path class="tree-branch-main" d="M 538 300 Q 570 260 600 210 Q 630 160 660 110 Q 690 70 720 40" stroke="url(#branchGradient)" stroke-width="10" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Правая средняя ветвь -->
-            <path class="tree-branch-main" d="M 542 380 Q 590 350 640 310 Q 690 270 740 230 Q 790 190 840 160" stroke="url(#branchGradient)" stroke-width="11" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Правая нижняя ветвь -->
-            <path class="tree-branch-main" d="M 545 450 Q 600 430 650 410 Q 700 390 750 370 Q 800 350 850 340" stroke="url(#branchGradient)" stroke-width="12" fill="none" stroke-linecap="round" filter="url(#glow)"/>
-            
-            <!-- Ветви второго порядка (средние) -->
-            <!-- Левая сторона -->
-            <path class="tree-branch-secondary" d="M 350 410 Q 320 390 290 370" stroke="url(#branchGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 300 390 Q 270 370 240 350" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 360 310 Q 330 290 300 270" stroke="url(#branchGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 310 270 Q 280 250 250 230" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 400 210 Q 370 190 340 170" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 370 160 Q 340 140 310 120" stroke="url(#branchGradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
-            
-            <!-- Правая сторона -->
-            <path class="tree-branch-secondary" d="M 650 410 Q 680 390 710 370" stroke="url(#branchGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 700 390 Q 730 370 760 350" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 640 310 Q 670 290 700 270" stroke="url(#branchGradient)" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 690 270 Q 720 250 750 230" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 600 210 Q 630 190 660 170" stroke="url(#branchGradient)" stroke-width="5" fill="none" stroke-linecap="round"/>
-            <path class="tree-branch-secondary" d="M 630 160 Q 660 140 690 120" stroke="url(#branchGradient)" stroke-width="4" fill="none" stroke-linecap="round"/>
-            
-            <!-- Мелкие веточки (третьего порядка) -->
-            <path class="tree-twig" d="M 290 370 Q 270 360 250 350" stroke="url(#branchGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 240 350 Q 220 340 200 330" stroke="url(#branchGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 300 270 Q 280 260 260 250" stroke="url(#branchGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 340 170 Q 320 160 300 150" stroke="url(#branchGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 710 370 Q 730 360 750 350" stroke="url(#branchGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 760 350 Q 780 340 800 330" stroke="url(#branchGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 700 270 Q 720 260 740 250" stroke="url(#branchGradient)" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path class="tree-twig" d="M 660 170 Q 680 160 700 150" stroke="url(#branchGradient)" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
         
-        <!-- Золотые листья-ссылки -->
         <a href="#artifact-1" class="tree-leaf leaf-1">
             <div class="tree-leaf-icon"></div>
             <span class="tree-leaf-name">Сиреневая Роза</span>
