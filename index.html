@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NECKLACES — Созвездия зачарованного леса</title>
+<link rel="icon" type="image/png" href="images/logos.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Plus+Jakarta+Sans:wght@300;400&display=swap');
 
@@ -34,6 +35,14 @@ body {
     cursor: none;
 }
 
+/* === ЧИТАЕМОСТЬ ЗОЛОТОГО ТЕКСТА === */
+.gold-text-contrast {
+    text-shadow:
+        0 1px 0 rgba(0, 0, 0, 0.95),
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(0, 0, 0, 0.6);
+}
+
 /* === КАСТОМНЫЙ КУРСОР === */
 .cursor {
     position: fixed;
@@ -59,7 +68,7 @@ body {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* === ФОН (БЕЗ ЗАТЕМНЕНИЯ) === */
+/* === ФОН === */
 .nature-hero-bg {
     position: fixed;
     inset: 0;
@@ -138,7 +147,7 @@ nav a::after {
 nav a:hover { opacity: 1; color: var(--accent-gold); }
 nav a:hover::after { width: 100%; }
 
-/* === HERO: ТЕКСТ СЛЕВА, КРУГ С ФОТО СПРАВА === */
+/* === HERO === */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -152,30 +161,18 @@ nav a:hover::after { width: 100%; }
 
 .hero-content-left {
     flex: 1;
-    max-width: 650px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.hero-subtitle {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 16px;
-    letter-spacing: 6px;
-    color: var(--accent-gold);
-    text-transform: uppercase;
-    margin-bottom: 25px;
-    opacity: 0.9;
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-}
-
 .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+    font-size: clamp(3rem, 6vw, 5.5rem);
     line-height: 1.05;
     font-weight: 400;
-    text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
     letter-spacing: 2px;
     margin-bottom: 25px;
 }
@@ -187,11 +184,10 @@ nav a:hover::after { width: 100%; }
     display: block;
     font-size: 1.15em;
     margin: 8px 0;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
 }
 
 .hero-divider-left {
-    width: 100px;
+    width: 120px;
     height: 1px;
     background: linear-gradient(90deg, var(--accent-gold), transparent);
     margin-bottom: 30px;
@@ -211,13 +207,13 @@ nav a:hover::after { width: 100%; }
 
 .hero-description {
     font-family: var(--font-display);
-    font-size: clamp(16px, 1.5vw, 20px);
-    line-height: 1.8;
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.7;
     color: var(--text-light);
     font-style: italic;
     font-weight: 300;
-    max-width: 520px;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+    max-width: 600px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
     opacity: 0.95;
 }
 
@@ -226,11 +222,11 @@ nav a:hover::after { width: 100%; }
     font-weight: 400;
 }
 
-/* === МАГИЧЕСКИЙ КРУГ С ФОТО В ЦЕНТРЕ === */
+/* === МАГИЧЕСКИЙ КРУГ === */
 .magic-circle {
     position: relative;
-    width: min(500px, 45vw);
-    height: min(500px, 45vw);
+    width: min(650px, 55vw);
+    height: min(650px, 55vw);
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -268,15 +264,14 @@ nav a:hover::after { width: 100%; }
     text-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
 }
 
-/* Фото украшения в центре круга */
 .center-artifact {
     position: relative;
-    width: 35%;
-    height: 35%;
+    width: 45%;
+    height: 45%;
     border-radius: 50%;
     overflow: hidden;
     z-index: 5;
-    box-shadow: 
+    box-shadow:
         0 0 0 3px rgba(212, 175, 55, 0.9),
         0 0 0 8px rgba(10, 20, 16, 0.9),
         0 0 0 9px rgba(212, 175, 55, 0.5),
@@ -295,7 +290,7 @@ nav a:hover::after { width: 100%; }
     content: '';
     position: absolute;
     inset: -50%;
-    background: radial-gradient(circle, 
+    background: radial-gradient(circle,
         rgba(244, 208, 63, 0.4) 0%,
         rgba(212, 175, 55, 0.2) 40%,
         transparent 70%
@@ -306,8 +301,8 @@ nav a:hover::after { width: 100%; }
 }
 
 @keyframes centerGlow {
-    0%, 100% { 
-        box-shadow: 
+    0%, 100% {
+        box-shadow:
             0 0 0 3px rgba(212, 175, 55, 0.9),
             0 0 0 8px rgba(10, 20, 16, 0.9),
             0 0 0 9px rgba(212, 175, 55, 0.5),
@@ -315,8 +310,8 @@ nav a:hover::after { width: 100%; }
             0 0 80px rgba(212, 175, 55, 0.5),
             inset 0 0 30px rgba(0, 0, 0, 0.4);
     }
-    50% { 
-        box-shadow: 
+    50% {
+        box-shadow:
             0 0 0 3px rgba(244, 208, 63, 1),
             0 0 0 8px rgba(10, 20, 16, 0.9),
             0 0 0 9px rgba(244, 208, 63, 0.7),
@@ -331,33 +326,90 @@ nav a:hover::after { width: 100%; }
     to { transform: rotate(360deg); }
 }
 
-/* === МАНИФЕСТ === */
+/* === МАНИФЕСТ (МАГИЧЕСКАЯ КНИГА / СКРИЖАЛЬ) === */
 .manifesto {
     position: relative;
     z-index: 10;
-    padding: 150px 8%;
-    text-align: center;
+    padding: 100px 8%;
+    display: flex;
+    justify-content: center;
+}
+
+.manifesto-card {
+    position: relative;
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
+    padding: 60px 50px;
+    text-align: center;
+    background: rgba(10, 20, 16, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        inset 0 0 80px rgba(10, 20, 16, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.1);
+    animation: floatBook 6s ease-in-out infinite;
+}
+
+/* Декоративные уголки "древней книги" */
+.manifesto-card::before,
+.manifesto-card::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--accent-gold);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+.manifesto-card::before {
+    top: -2px; left: -2px;
+    border-right: none; border-bottom: none;
+    border-top-left-radius: 4px;
+}
+.manifesto-card::after {
+    bottom: -2px; right: -2px;
+    border-left: none; border-top: none;
+    border-bottom-right-radius: 4px;
+}
+
+/* Внутренняя светящаяся рамка */
+.manifesto-inner-frame {
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes floatBook {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
 
 .manifesto-label {
     font-family: var(--font-serif);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 40px;
-    opacity: 0.8;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
 }
 
 .manifesto-text {
     font-family: var(--font-display);
-    font-size: clamp(24px, 3vw, 36px);
-    line-height: 1.6;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.5;
     font-weight: 300;
     color: var(--text-light);
     font-style: italic;
+    position: relative;
+    z-index: 2;
 }
 .manifesto-text .gold {
     color: var(--accent-gold);
@@ -365,13 +417,12 @@ nav a:hover::after { width: 100%; }
 }
 .manifesto-text .dropcap {
     font-family: var(--font-serif);
-    font-size: 3em;
+    font-size: 3.5em;
     float: left;
     line-height: 0.9;
     margin: 10px 15px 0 0;
     color: var(--accent-gold);
     font-style: normal;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
 }
 
 /* === ГАЛЕРЕЯ АРТЕФАКТОВ === */
@@ -387,7 +438,7 @@ nav a:hover::after { width: 100%; }
 }
 .artifacts-label {
     font-family: var(--font-serif);
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 6px;
     text-transform: uppercase;
     color: var(--accent-gold);
@@ -395,7 +446,7 @@ nav a:hover::after { width: 100%; }
 }
 .artifacts-title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
     font-weight: 400;
     letter-spacing: 3px;
 }
@@ -430,7 +481,6 @@ nav a:hover::after { width: 100%; }
     margin-left: 15px;
 }
 
-/* Визуал с медальоном */
 .artifact-visual {
     position: relative;
     display: flex;
@@ -445,14 +495,11 @@ nav a:hover::after { width: 100%; }
     aspect-ratio: 1/1;
 }
 
-/* === ЖИВОЕ НЕОНОВОЕ СВЕЧЕНИЕ БЕЗ ЛУЧЕЙ === */
-
-/* Жирное неоновое свечение вокруг медальона */
 .medallion::before {
     content: '';
     position: absolute;
     inset: -30%;
-    background: radial-gradient(circle, 
+    background: radial-gradient(circle,
         rgba(244, 208, 63, 0.9) 0%,
         rgba(255, 223, 100, 0.7) 15%,
         rgba(244, 208, 63, 0.5) 30%,
@@ -465,12 +512,11 @@ nav a:hover::after { width: 100%; }
     pointer-events: none;
 }
 
-/* Дополнительный слой свечения для живости */
 .medallion::after {
     content: '';
     position: absolute;
     inset: -20%;
-    background: radial-gradient(circle, 
+    background: radial-gradient(circle,
         rgba(255, 240, 150, 0.8) 0%,
         rgba(244, 208, 63, 0.6) 20%,
         rgba(212, 175, 55, 0.4) 40%,
@@ -483,17 +529,10 @@ nav a:hover::after { width: 100%; }
 }
 
 @keyframes neonPulse {
-    0%, 100% { 
-        opacity: 0.8;
-        transform: scale(1);
-    }
-    50% { 
-        opacity: 1;
-        transform: scale(1.1);
-    }
+    0%, 100% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
 }
 
-/* Само фото */
 .medallion-image {
     position: relative;
     width: 100%;
@@ -501,7 +540,7 @@ nav a:hover::after { width: 100%; }
     border-radius: 50%;
     overflow: hidden;
     z-index: 2;
-    box-shadow: 
+    box-shadow:
         0 0 0 4px rgba(244, 208, 63, 0.9),
         0 0 0 10px rgba(10, 20, 16, 0.9),
         0 0 0 11px rgba(244, 208, 63, 0.5),
@@ -509,8 +548,8 @@ nav a:hover::after { width: 100%; }
         0 0 100px rgba(212, 175, 55, 0.5),
         0 40px 100px rgba(0, 0, 0, 0.8),
         inset 0 0 60px rgba(0, 0, 0, 0.3);
-    transition: 
-        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), 
+    transition:
+        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
         box-shadow 1s ease,
         border-radius 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -522,11 +561,10 @@ nav a:hover::after { width: 100%; }
     filter: saturate(1.05) contrast(1.08) brightness(1.02);
 }
 
-/* При наведении: квадратная форма и больше изображения */
 .medallion:hover .medallion-image {
-    border-radius: 18%;
-    transform: scale(1.08);
-    box-shadow: 
+    border-radius: 0;
+    transform: scale(1.15);
+    box-shadow:
         0 0 0 4px rgba(255, 223, 100, 1),
         0 0 0 10px rgba(10, 20, 16, 0.9),
         0 0 0 11px rgba(255, 223, 100, 0.7),
@@ -536,11 +574,10 @@ nav a:hover::after { width: 100%; }
         inset 0 0 60px rgba(0, 0, 0, 0.3);
 }
 .medallion:hover .medallion-image img {
-    transform: scale(1.2);
+    transform: scale(1);
     filter: saturate(1.2) contrast(1.15) brightness(1.08);
 }
 
-/* Информация */
 .artifact-info {
     position: relative;
     padding: 40px 0;
@@ -551,7 +588,7 @@ nav a:hover::after { width: 100%; }
     align-items: center;
     gap: 20px;
     font-family: var(--font-serif);
-    font-size: 11px;
+    font-size: 14px;
     letter-spacing: 5px;
     text-transform: uppercase;
     color: var(--accent-gold);
@@ -568,13 +605,13 @@ nav a:hover::after { width: 100%; }
 .artifact-number {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 14px;
-    opacity: 0.7;
+    font-size: 18px;
+    opacity: 0.8;
 }
 
 .artifact-title {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
     font-weight: 400;
     margin-bottom: 15px;
     letter-spacing: 2px;
@@ -610,12 +647,19 @@ nav a:hover::after { width: 100%; }
 
 .artifact-text {
     font-family: var(--font-display);
-    font-size: 18px;
-    line-height: 1.9;
-    color: var(--text-muted);
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.8;
+    color: var(--text-light);
     margin-bottom: 40px;
     font-weight: 300;
-    max-width: 500px;
+    max-width: 550px;
+    padding: 25px 30px;
+    background: rgba(10, 20, 16, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 .artifact:nth-child(even) .artifact-text { margin-left: auto; }
 
@@ -634,15 +678,15 @@ nav a:hover::after { width: 100%; }
 }
 .detail-label {
     font-family: var(--font-serif);
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 .detail-value {
     font-family: var(--font-display);
-    font-size: 16px;
+    font-size: 20px;
     color: var(--text-light);
     font-style: italic;
 }
@@ -652,7 +696,7 @@ nav a:hover::after { width: 100%; }
     align-items: center;
     gap: 15px;
     font-family: var(--font-serif);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 4px;
     text-transform: uppercase;
     text-decoration: none;
@@ -691,9 +735,7 @@ footer {
     position: relative;
     z-index: 10;
     padding: 100px 8% 60px;
-    background: linear-gradient(to top, rgba(5, 10, 8, 0.95), transparent);
     text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
 }
 .footer-ornament {
     font-family: var(--font-serif);
@@ -714,7 +756,7 @@ footer {
 .footer-text {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--text-muted);
     letter-spacing: 2px;
     margin-bottom: 40px;
@@ -723,10 +765,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 40px;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
     font-family: var(--font-serif);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--text-muted);
@@ -767,7 +807,7 @@ footer {
     nav { gap: 20px; }
     nav a { font-size: 10px; letter-spacing: 2px; }
     .logo { font-size: 18px; letter-spacing: 4px; }
-    
+
     .hero {
         flex-direction: column;
         padding: 120px 6% 60px;
@@ -778,15 +818,16 @@ footer {
         text-align: left;
     }
     .magic-circle {
-        width: 70vw;
-        height: 70vw;
-        max-width: 350px;
+        width: 80vw;
+        height: 80vw;
+        max-width: 450px;
     }
-    .hero-subtitle { font-size: 13px; letter-spacing: 4px; }
-    .hero-description { font-size: 16px; max-width: 100%; }
-    
+    .hero-description { font-size: 20px; max-width: 100%; }
+
     .manifesto { padding: 80px 6%; }
-    
+    .manifesto-card { padding: 40px 25px; }
+    .manifesto-text { font-size: 24px; }
+
     .artifact {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -798,10 +839,15 @@ footer {
     .artifact:nth-child(even) .artifact-meta::after { display: none; }
     .artifact:nth-child(even) .artifact-text { margin: 0 auto 40px; }
     .artifact:nth-child(even) .artifact-details { justify-content: center; }
-    
+
     .artifact-visual { padding: 30px; }
     .medallion { width: 85%; max-width: 420px; }
-    
+
+    .artifact-text {
+        padding: 20px 25px;
+        font-size: 18px;
+    }
+
     .footer-bottom { flex-direction: column; gap: 15px; }
 }
 </style>
@@ -812,7 +858,7 @@ footer {
 <div class="cursor" id="cursor"></div>
 <div class="cursor-trail" id="cursor-trail"></div>
 
-<!-- Фон (БЕЗ затемнения) -->
+<!-- Фон -->
 <div class="nature-hero-bg">
     <img src="images/site.png" alt="" class="bg-image">
 </div>
@@ -822,7 +868,7 @@ footer {
 
 <!-- Навигация -->
 <header>
-    <a href="#" class="logo">Necklaces</a>
+    <a href="#" class="logo"><span>DARIA ROZENVASSER</span></a>
     <nav>
         <a href="#artifacts">Артефакты</a>
         <a href="#">О нас</a>
@@ -831,44 +877,43 @@ footer {
 </header>
 
 <main>
-    <!-- HERO: ТЕКСТ СЛЕВА, КРУГ С ФОТО СПРАВА -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content-left">
-            <div class="hero-subtitle">✦ Anno Magica ✦</div>
             <h1 class="hero-title">
                 Авторские
-                <span class="accent">украшения</span>
+                <span class="accent gold-text-contrast">украшения</span>
                 зачарованного леса
             </h1>
             <div class="hero-divider-left"></div>
-            <p class="hero-description">
-                В тишине <span class="gold">первозданных лесов</span>, где свет луны переплетается с туманом, рождаются украшения, хранящие <span class="gold">древнюю магию</span> природы. Каждое изделие — портал в мир, где металл обретает душу, а камни помнят песню звёзд.
-            </p>
+            
         </div>
         <div class="magic-circle">
             <div class="orbit orbit-1"></div>
             <div class="orbit orbit-2"></div>
             <div class="orbit orbit-3"></div>
-            <!-- Фото украшения в центре круга -->
             <div class="center-artifact">
-                <img src="images/photo_2026-06-07_10-38-49.jpg" alt="Центральный артефакт">
+                <img src="images/logos.png" alt="Центральный артефакт">
             </div>
         </div>
     </section>
 
-    <!-- МАНИФЕСТ -->
+    <!-- МАНИФЕСТ (МАГИЧЕСКАЯ КНИГА) -->
     <section class="manifesto">
-        <div class="manifesto-label">✦ Философия ✦</div>
-        <p class="manifesto-text">
-            <span class="dropcap">К</span>
-            аждое украшение — это <span class="gold">заклинание в золоте</span>, произнесённое руками мастера. Мы не создаём аксессуары — мы куём амулеты, в которых живёт <span class="gold">дыхание леса</span>, шёпот древних деревьев и свет далёких созвездий.
-        </p>
+        <div class="manifesto-card">
+            <div class="manifesto-inner-frame"></div>
+            <div class="manifesto-label gold-text-contrast">✦ Философия ✦</div>
+            <p class="manifesto-text">
+                <span class="dropcap gold-text-contrast">К</span>
+                аждое украшение — это <span class="gold gold-text-contrast">заклинание в золоте</span>, произнесённое руками мастера. Мы не создаём аксессуары — мы куём амулеты, в которых живёт <span class="gold gold-text-contrast">дыхание леса</span>, шёпот древних деревьев и свет далёких созвездий.
+            </p>
+        </div>
     </section>
 
     <!-- ГАЛЕРЕЯ АРТЕФАКТОВ -->
     <section class="artifacts" id="artifacts">
         <div class="artifacts-header">
-            <div class="artifacts-label">✦ Коллекция ✦</div>
+            <div class="artifacts-label gold-text-contrast">✦ Коллекция ✦</div>
             <h2 class="artifacts-title">Священные Артефакты</h2>
         </div>
 
@@ -883,13 +928,13 @@ footer {
             </div>
             <div class="artifact-info">
                 <div class="artifact-meta">
-                    <span class="artifact-number">Артефакт I</span>
+                    <span class="artifact-number gold-text-contrast">Артефакт I</span>
                     <span>✦</span>
-                    <span>Лунная серия</span>
+                    <span class="gold-text-contrast">Лунная серия</span>
                 </div>
                 <h3 class="artifact-title">
                     Сиреневая
-                    <span class="italic">Роза</span>
+                    <span class="italic gold-text-contrast">Роза</span>
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
@@ -897,11 +942,11 @@ footer {
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
-                        <span class="detail-label">Материал</span>
+                        <span class="detail-label gold-text-contrast">Материал</span>
                         <span class="detail-value">Золото 585, агат</span>
                     </div>
                     <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
+                        <span class="detail-label gold-text-contrast">Эпоха</span>
                         <span class="detail-value">Полнолуние</span>
                     </div>
                 </div>
@@ -923,13 +968,13 @@ footer {
             </div>
             <div class="artifact-info">
                 <div class="artifact-meta">
-                    <span>Солнечная серия</span>
+                    <span class="gold-text-contrast">Солнечная серия</span>
                     <span>✦</span>
-                    <span class="artifact-number">Артефакт II</span>
+                    <span class="artifact-number gold-text-contrast">Артефакт II</span>
                 </div>
                 <h3 class="artifact-title">
                     Побеги
-                    <span class="italic">Омни</span>
+                    <span class="italic gold-text-contrast">Омни</span>
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
@@ -937,11 +982,11 @@ footer {
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
-                        <span class="detail-label">Материал</span>
+                        <span class="detail-label gold-text-contrast">Материал</span>
                         <span class="detail-value">Матовое золото</span>
                     </div>
                     <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
+                        <span class="detail-label gold-text-contrast">Эпоха</span>
                         <span class="detail-value">Равноденствие</span>
                     </div>
                 </div>
@@ -963,13 +1008,13 @@ footer {
             </div>
             <div class="artifact-info">
                 <div class="artifact-meta">
-                    <span class="artifact-number">Артефакт III</span>
+                    <span class="artifact-number gold-text-contrast">Артефакт III</span>
                     <span>✦</span>
-                    <span>Серия Рассвета</span>
+                    <span class="gold-text-contrast">Серия Рассвета</span>
                 </div>
                 <h3 class="artifact-title">
                     Лесная
-                    <span class="italic">Капля</span>
+                    <span class="italic gold-text-contrast">Капля</span>
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
@@ -977,11 +1022,11 @@ footer {
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
-                        <span class="detail-label">Материал</span>
+                        <span class="detail-label gold-text-contrast">Материал</span>
                         <span class="detail-value">Золото, агат</span>
                     </div>
                     <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
+                        <span class="detail-label gold-text-contrast">Эпоха</span>
                         <span class="detail-value">Рассвет</span>
                     </div>
                 </div>
@@ -1003,13 +1048,13 @@ footer {
             </div>
             <div class="artifact-info">
                 <div class="artifact-meta">
-                    <span>Серия Сумерек</span>
+                    <span class="gold-text-contrast">Серия Сумерек</span>
                     <span>✦</span>
-                    <span class="artifact-number">Артефакт IV</span>
+                    <span class="artifact-number gold-text-contrast">Артефакт IV</span>
                 </div>
                 <h3 class="artifact-title">
                     Звёздная
-                    <span class="italic">Лоза</span>
+                    <span class="italic gold-text-contrast">Лоза</span>
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
@@ -1017,11 +1062,11 @@ footer {
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
-                        <span class="detail-label">Материал</span>
+                        <span class="detail-label gold-text-contrast">Материал</span>
                         <span class="detail-value">Плетёное золото</span>
                     </div>
                     <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
+                        <span class="detail-label gold-text-contrast">Эпоха</span>
                         <span class="detail-value">Сумерки</span>
                     </div>
                 </div>
@@ -1037,7 +1082,7 @@ footer {
 <!-- FOOTER -->
 <footer>
     <div class="footer-ornament">✦ ❖ ✦</div>
-    <div class="footer-title">Necklaces</div>
+    <div class="footer-title"><span>DARIA ROZENVASSER</span></div>
     <p class="footer-text">Дикая эстетика бисера и золота</p>
     <div class="footer-bottom">
         <p>© 2026 Beaded Necklaces</p>
@@ -1068,7 +1113,6 @@ function animateTrail() {
 }
 animateTrail();
 
-// Увеличение курсора при наведении
 document.querySelectorAll('a, button, .medallion').forEach(el => {
     el.addEventListener('mouseenter', () => {
         cursor.style.width = '40px';
