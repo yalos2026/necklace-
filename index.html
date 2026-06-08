@@ -31,7 +31,7 @@ body {
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: none; /* Скрываем стандартный курсор */
+    cursor: none;
 }
 
 /* === КАСТОМНЫЙ КУРСОР === */
@@ -59,7 +59,7 @@ body {
     transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* === ФОН === */
+/* === ФОН (БЕЗ ЗАТЕМНЕНИЯ) === */
 .nature-hero-bg {
     position: fixed;
     inset: 0;
@@ -73,15 +73,7 @@ body {
     width: auto; height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    filter: brightness(0.55) saturate(1.1);
-}
-.bg-overlay {
-    position: absolute;
-    inset: 0;
-    background: 
-        radial-gradient(ellipse at center, transparent 0%, rgba(10, 20, 16, 0.4) 60%, rgba(10, 20, 16, 0.95) 100%),
-        linear-gradient(180deg, rgba(10, 20, 16, 0.3) 0%, transparent 30%, transparent 70%, rgba(10, 20, 16, 0.95) 100%);
-    z-index: 2;
+    filter: saturate(1.1);
 }
 
 /* === НАВИГАЦИЯ === */
@@ -94,7 +86,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(10, 20, 16, 0.8), transparent);
+    background: linear-gradient(to bottom, rgba(10, 20, 16, 0.6), transparent);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -146,33 +138,109 @@ nav a::after {
 nav a:hover { opacity: 1; color: var(--accent-gold); }
 nav a:hover::after { width: 100%; }
 
-/* === HERO С МАГИЧЕСКИМИ ОРБИТАМИ === */
+/* === HERO: ТЕКСТ СЛЕВА, ОРБИТЫ СПРАВА === */
 .hero {
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 0 8%;
+    justify-content: space-between;
+    padding: 120px 8% 60px;
     position: relative;
     z-index: 10;
-    text-align: center;
+    gap: 60px;
 }
 
+.hero-content-left {
+    flex: 1;
+    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-subtitle {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 16px;
+    letter-spacing: 6px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+    line-height: 1.05;
+    font-weight: 400;
+    text-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+.hero-title .accent {
+    color: var(--accent-gold);
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 300;
+    display: block;
+    font-size: 1.15em;
+    margin: 8px 0;
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+.hero-divider-left {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-gold), transparent);
+    margin-bottom: 30px;
+    position: relative;
+}
+.hero-divider-left::before {
+    content: '❖';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: var(--accent-gold);
+    background: var(--forest-dark);
+    padding-right: 12px;
+    font-size: 14px;
+}
+
+.hero-description {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.5vw, 20px);
+    line-height: 1.8;
+    color: var(--text-light);
+    font-style: italic;
+    font-weight: 300;
+    max-width: 520px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+    opacity: 0.95;
+}
+
+.hero-description .gold {
+    color: var(--accent-gold);
+    font-weight: 400;
+}
+
+/* Магический круг справа */
 .magic-circle {
     position: relative;
-    width: min(600px, 80vw);
-    height: min(600px, 80vw);
+    width: min(500px, 45vw);
+    height: min(500px, 45vw);
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 40px;
 }
 
 .orbit {
     position: absolute;
     border-radius: 50%;
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.25);
 }
 .orbit-1 {
     width: 100%; height: 100%;
@@ -180,14 +248,14 @@ nav a:hover::after { width: 100%; }
     border-style: dashed;
 }
 .orbit-2 {
-    width: 80%; height: 80%;
+    width: 75%; height: 75%;
     animation: rotate 30s linear infinite reverse;
-    border-color: rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175, 55, 0.35);
 }
 .orbit-3 {
-    width: 60%; height: 60%;
+    width: 50%; height: 50%;
     animation: rotate 20s linear infinite;
-    border-color: rgba(212, 175, 55, 0.4);
+    border-color: rgba(212, 175, 55, 0.45);
 }
 
 .orbit::before {
@@ -196,92 +264,13 @@ nav a:hover::after { width: 100%; }
     top: -6px; left: 50%;
     transform: translateX(-50%);
     color: var(--accent-gold);
-    font-size: 12px;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+    font-size: 14px;
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
 }
 
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-}
-
-.hero-subtitle {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 18px;
-    letter-spacing: 8px;
-    color: var(--accent-gold);
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    opacity: 0.9;
-}
-
-.hero-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    line-height: 1.1;
-    font-weight: 400;
-    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    letter-spacing: 2px;
-}
-.hero-title .accent {
-    color: var(--accent-gold);
-    font-style: italic;
-    font-family: var(--font-display);
-    font-weight: 300;
-    display: block;
-    font-size: 1.2em;
-    margin: 10px 0;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-}
-
-.hero-divider {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
-    margin: 40px auto;
-    position: relative;
-}
-.hero-divider::before {
-    content: '❖';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-gold);
-    background: var(--forest-dark);
-    padding: 0 15px;
-    font-size: 16px;
-}
-
-.scroll-hint {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-serif);
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.6;
-    animation: bounce 2s ease-in-out infinite;
-}
-.scroll-hint::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--accent-gold), transparent);
-    margin: 15px auto 0;
-}
-@keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(10px); }
 }
 
 /* === МАНИФЕСТ === */
@@ -389,26 +378,26 @@ nav a:hover::after { width: 100%; }
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 60px;
+    padding: 80px;
 }
 
 .medallion {
     position: relative;
-    width: min(450px, 90%);
+    width: min(580px, 95%);
     aspect-ratio: 1/1;
 }
 
 .medallion-glow {
     position: absolute;
-    inset: -20%;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 60%);
-    filter: blur(40px);
+    inset: -25%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 60%);
+    filter: blur(50px);
     animation: breathe 4s ease-in-out infinite;
     z-index: 0;
 }
 @keyframes breathe {
     0%, 100% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.1); }
+    50% { opacity: 0.85; transform: scale(1.1); }
 }
 
 .medallion-rings {
@@ -423,13 +412,13 @@ nav a:hover::after { width: 100%; }
     border: 1px solid rgba(212, 175, 55, 0.4);
 }
 .medallion-ring:nth-child(1) {
-    inset: -15px;
+    inset: -20px;
     animation: rotate 25s linear infinite;
     border-style: dashed;
     border-color: rgba(212, 175, 55, 0.5);
 }
 .medallion-ring:nth-child(2) {
-    inset: -35px;
+    inset: -45px;
     animation: rotate 35s linear infinite reverse;
     border-color: rgba(212, 175, 55, 0.25);
 }
@@ -439,10 +428,11 @@ nav a:hover::after { width: 100%; }
     top: -8px; left: 50%;
     transform: translateX(-50%);
     color: var(--accent-gold);
-    font-size: 14px;
+    font-size: 16px;
     text-shadow: 0 0 15px rgba(212, 175, 55, 1);
 }
 
+/* === РАМКА С ДРАГОЦЕННЫМИ КАМНЯМИ === */
 .medallion-image {
     position: relative;
     width: 100%;
@@ -451,11 +441,11 @@ nav a:hover::after { width: 100%; }
     overflow: hidden;
     z-index: 2;
     box-shadow: 
-        0 0 0 2px rgba(212, 175, 55, 0.6),
-        0 0 0 8px rgba(10, 20, 16, 0.8),
-        0 0 0 9px rgba(212, 175, 55, 0.3),
-        0 30px 80px rgba(0, 0, 0, 0.8),
-        inset 0 0 60px rgba(0, 0, 0, 0.3);
+        0 0 0 4px rgba(212, 175, 55, 0.8),
+        0 0 0 12px rgba(10, 20, 16, 0.9),
+        0 0 0 13px rgba(212, 175, 55, 0.4),
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        inset 0 0 80px rgba(0, 0, 0, 0.3);
     transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .medallion-image img {
@@ -473,777 +463,9 @@ nav a:hover::after { width: 100%; }
     filter: saturate(1.2) contrast(1.1) brightness(1);
 }
 
-/* Руны по кругу */
-.runes {
+/* Драгоценные камни по кругу */
+.gems-ring {
     position: absolute;
-    inset: -60px;
-    z-index: 1;
-    animation: rotate 60s linear infinite;
-}
-.rune {
-    position: absolute;
-    top: 50%; left: 50%;
-    color: var(--accent-gold);
-    font-family: var(--font-serif);
-    font-size: 14px;
-    opacity: 0.5;
-    transform-origin: 0 0;
-}
-
-/* Информация */
-.artifact-info {
-    position: relative;
-    padding: 40px 0;
-}
-
-.artifact-meta {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    margin-bottom: 30px;
-}
-.artifact-meta::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 1px;
-    background: var(--accent-gold);
-}
-
-.artifact-number {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 14px;
-    opacity: 0.7;
-}
-
-.artifact-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2rem, 3.5vw, 3.2rem);
-    font-weight: 400;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    line-height: 1.2;
-}
-.artifact-title .italic {
-    font-family: var(--font-display);
-    font-style: italic;
-    color: var(--accent-gold);
-    font-weight: 300;
-    display: block;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-
-.artifact-divider {
-    width: 60px;
-    height: 1px;
-    background: var(--accent-gold);
-    margin: 30px 0;
-    position: relative;
-}
-.artifact-divider::before {
-    content: '◆';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-gold);
-    font-size: 8px;
-    background: var(--forest-dark);
-    padding: 0 10px;
-}
-
-.artifact-text {
-    font-family: var(--font-display);
-    font-size: 18px;
-    line-height: 1.9;
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    font-weight: 300;
-    max-width: 500px;
-}
-.artifact:nth-child(even) .artifact-text { margin-left: auto; }
-
-.artifact-details {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-    padding-top: 30px;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
-}
-.artifact:nth-child(even) .artifact-details { justify-content: flex-end; }
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.detail-label {
-    font-family: var(--font-serif);
-    font-size: 9px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    opacity: 0.7;
-}
-.detail-value {
-    font-family: var(--font-display);
-    font-size: 16px;
-    color: var(--text-light);
-    font-style: italic;
-}
-
-.action-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 15px;
-    font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--text-light);
-    padding: 18px 35px;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    background: rgba(212, 175, 55, 0.05);
-    backdrop-filter: blur(10px);
-    transition: var(--cb-transition);
-    position: relative;
-    overflow: hidden;
-}
-.action-button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-    transition: left 0.6s ease;
-}
-.action-button:hover {
-    border-color: var(--accent-gold);
-    color: var(--accent-gold);
-    background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-}
-.action-button:hover::before { left: 100%; }
-.action-button .arrow {
-    transition: transform 0.4s ease;
-}
-.action-button:hover .arrow { transform: translateX(5px); }
-
-/* === СОЗВЕЗДИЕ === */
-.constellation {
-    position: relative;
-    z-index: 10;
-    padding: 150px 5%;
-    text-align: center;
-    background: radial-gradient(ellipse at center, rgba(139, 111, 212, 0.05) 0%, transparent 70%);
-}
-
-.constellation-label {
-    font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    margin-bottom: 20px;
-}
-.constellation-title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 80px;
-    color: var(--text-light);
-}
-
-.star-map {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    height: 500px;
-}
-
-.star {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--accent-gold-bright) 0%, var(--accent-gold) 50%, transparent 100%);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.4);
-    animation: twinkle 3s ease-in-out infinite;
-    cursor: none;
-}
-.star::after {
-    content: attr(data-name);
-    position: absolute;
-    top: 20px; left: 50%;
-    transform: translateX(-50%);
-    font-family: var(--font-serif);
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--accent-gold);
-    white-space: nowrap;
-    opacity: 0.7;
-}
-@keyframes twinkle {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.8); }
-}
-
-.star-1 { top: 20%; left: 15%; animation-delay: 0s; }
-.star-2 { top: 35%; left: 45%; animation-delay: 0.5s; }
-.star-3 { top: 15%; left: 70%; animation-delay: 1s; }
-.star-4 { top: 60%; left: 30%; animation-delay: 1.5s; }
-.star-5 { top: 70%; left: 65%; animation-delay: 2s; }
-
-.star-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
-    transform-origin: left center;
-    pointer-events: none;
-}
-
-/* === FOOTER === */
-footer {
-    position: relative;
-    z-index: 10;
-    padding: 100px 8% 60px;
-    background: linear-gradient(to top, rgba(5, 10, 8, 0.95), transparent);
-    text-align: center;
-    border-top: 1px solid rgba(212, 175, 55, 0.15);
-}
-.footer-ornament {
-    font-family: var(--font-serif);
-    color: var(--accent-gold);
-    font-size: 24px;
-    margin-bottom: 30px;
-    letter-spacing: 15px;
-    opacity: 0.6;
-}
-.footer-title {
-    font-family: var(--font-serif);
-    font-size: 18px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    color: var(--text-light);
-}
-.footer-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 14px;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-}
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 40px;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-    font-family: var(--font-serif);
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    opacity: 0.6;
-}
-
-/* === ПАДАЮЩИЕ ЛЕПЕСТКИ === */
-.petals-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 50;
-    overflow: hidden;
-}
-.petal {
-    position: absolute;
-    top: -50px;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, #fdfbf7 0%, #d4af37 40%, #8a6d1c 100%);
-    border-radius: 0% 100% 0% 100%;
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.6), inset 0 0 4px rgba(255, 255, 255, 0.8);
-    opacity: 0;
-}
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
-    10% { opacity: 0.9; }
-    25% { transform: translateY(25vh) rotate(90deg) translateX(30px); }
-    50% { transform: translateY(50vh) rotate(180deg) translateX(-20px); }
-    75% { transform: translateY(75vh) rotate(270deg) translateX(40px); }
-    100% { transform: translateY(110vh) rotate(360deg) translateX(0); opacity: 0; }
-}
-
-/* === СВЕТЛЯЧКИ === */
-.fireflies-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 40;
-    overflow: hidden;
-}
-.firefly {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--accent-gold-bright);
-    box-shadow: 0 0 10px var(--accent-gold-bright), 0 0 20px var(--accent-gold);
-    opacity: 0;
-    animation: fireflyFloat 15s linear infinite;
-}
-@keyframes fireflyFloat {
-    0% { transform: translate(0, 0); opacity: 0; }
-    10% { opacity: 1; }
-    50% { opacity: 0.6; }
-    90% { opacity: 1; }
-    100% { transform: translate(100vw, -100vh); opacity: 0; }
-}
-
-/* === АДАПТИВНОСТЬ === */
-@media (max-width: 960px) {
-    body { cursor: auto; }
-    .cursor, .cursor-trail { display: none; }
-    header { padding: 20px 5%; }
-    nav { gap: 20px; }
-    nav a { font-size: 10px; letter-spacing: 2px; }
-    .logo { font-size: 18px; letter-spacing: 4px; }
-    
-    .magic-circle { width: 90vw; height: 90vw; }
-    .hero-subtitle { font-size: 14px; letter-spacing: 5px; }
-    
-    .manifesto { padding: 80px 6%; }
-    
-    .artifact {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 120px;
-    }
-    .artifact:nth-child(even) .artifact-visual { order: 1; }
-    .artifact:nth-child(even) .artifact-info { order: 2; text-align: center; }
-    .artifact:nth-child(even) .artifact-meta { justify-content: center; }
-    .artifact:nth-child(even) .artifact-meta::after { display: none; }
-    .artifact:nth-child(even) .artifact-text { margin: 0 auto 40px; }
-    .artifact:nth-child(even) .artifact-details { justify-content: center; }
-    
-    .artifact-visual { padding: 20px; }
-    .medallion { width: 80%; max-width: 350px; }
-    .runes { display: none; }
-    
-    .star-map { height: 400px; }
-    
-    .footer-bottom { flex-direction: column; gap: 15px; }
-}
-</style>
-</head>
-<body>
-
-<!-- Кастомный курсор -->
-<div class="cursor" id="cursor"></div>
-<div class="cursor-trail" id="cursor-trail"></div>
-
-<!-- Фон -->
-<div class="nature-hero-bg">
-    <img src="images/site.png" alt="" class="bg-image">
-    <div class="bg-overlay"></div>
-</div>
-
-<!-- Светлячки -->
-<div class="fireflies-container" id="fireflies"></div>
-
-<!-- Навигация -->
-<header>
-    <a href="#" class="logo">Necklaces</a>
-    <nav>
-        <a href="#artifacts">Артефакты</a>
-        <a href="#constellation">Созвездие</a>
-        <a href="#">Контакты</a>
-    </nav>
-</header>
-
-<main>
-    <!-- HERO -->
-    <section class="hero">
-        <div class="magic-circle">
-            <div class="orbit orbit-1"></div>
-            <div class="orbit orbit-2"></div>
-            <div class="orbit orbit-3"></div>
-            <div class="hero-content">
-                <div class="hero-subtitle">✦ Anno Magica ✦</div>
-                <h1 class="hero-title">
-                    Авторские
-                    <span class="accent">украшения</span>
-                    зачарованного леса
-                </h1>
-            </div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="scroll-hint">Листайте вниз</div>
-    </section>
-
-    <!-- МАНИФЕСТ -->
-    <section class="manifesto">
-        <div class="manifesto-label">✦ Манифест ✦</div>
-        <p class="manifesto-text">
-            <span class="dropcap">В</span> 
-            тишине <span class="gold">первозданных лесов</span>, где свет луны переплетается с туманом, рождаются украшения, хранящие <span class="gold">древнюю магию</span> природы. Каждое изделие — это портал в мир, где металл обретает душу, а камни помнят песню звёзд.
-        </p>
-    </section>
-
-    <!-- ГАЛЕРЕЯ АРТЕФАКТОВ -->
-    <section class="artifacts" id="artifacts">
-        <div class="artifacts-header">
-            <div class="artifacts-label">✦ Коллекция ✦</div>
-            <h2 class="artifacts-title">Священные Артефакты</h2>
-        </div>
-
-        <!-- Артефакт I -->
-        <article class="artifact">
-            <div class="artifact-visual">
-                <div class="medallion">
-                    <div class="medallion-glow"></div>
-                    <div class="medallion-rings">
-                        <div class="medallion-ring"></div>
-                        <div class="medallion-ring"></div>
-                    </div>
-                    <div class="medallion-image">
-                        <img src="images/photo_2026-06-07_10-38-49.jpg" alt="Сиреневая Роза">
-                    </div>
-                </div>
-            </div>
-            <div class="artifact-info">
-                <div class="artifact-meta">
-                    <span class="artifact-number">Артефакт I</span>
-                    <span>✦</span>
-                    <span>Лунная серия</span>
-                </div>
-                <h3 class="artifact-title">
-                    Сиреневая
-                    <span class="italic">Роза</span>
-                </h3>
-                <div class="artifact-divider"></div>
-                <p class="artifact-text">
-                    Тончайшая анатомическая формовка металлических лепестков. Ювелирный японский микробисер оплетает центральный элемент — глубокий природный агат, улавливающий отблески лесного солнца.
-                </p>
-                <div class="artifact-details">
-                    <div class="detail-item">
-                        <span class="detail-label">Материал</span>
-                        <span class="detail-value">Золото 585, агат</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
-                        <span class="detail-value">Полнолуние</span>
-                    </div>
-                </div>
-                <a href="#" class="action-button">
-                    <span>Рассмотреть</span>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </article>
-
-        <!-- Артефакт II -->
-        <article class="artifact">
-            <div class="artifact-visual">
-                <div class="medallion">
-                    <div class="medallion-glow"></div>
-                    <div class="medallion-rings">
-                        <div class="medallion-ring"></div>
-                        <div class="medallion-ring"></div>
-                    </div>
-                    <div class="medallion-image">
-                        <img src="images/photo_2026-06-07_10-38-35.jpg" alt="Побеги Омни">
-                    </div>
-                </div>
-            </div>
-            <div class="artifact-info">
-                <div class="artifact-meta">
-                    <span>Солнечная серия</span>
-                    <span>✦</span>
-                    <span class="artifact-number">Артефакт II</span>
-                </div>
-                <h3 class="artifact-title">
-                    Побеги
-                    <span class="italic">Омни</span>
-                </h3>
-                <div class="artifact-divider"></div>
-                <p class="artifact-text">
-                    Линейный концепт, в точности повторяющий пластику дикой виноградной лозы. Живое переплетение матового золота и фактурных изгибов, созданное для интеграции в повседневный образ.
-                </p>
-                <div class="artifact-details">
-                    <div class="detail-item">
-                        <span class="detail-label">Материал</span>
-                        <span class="detail-value">Матовое золото</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
-                        <span class="detail-value">Равноденствие</span>
-                    </div>
-                </div>
-                <a href="#" class="action-button">
-                    <span>Рассмотреть</span>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </article>
-
-        <!-- Артефакт III -->
-        <article class="artifact">
-            <div class="artifact-visual">
-                <div class="medallion">
-                    <div class="medallion-glow"></div>
-                    <div class="medallion-rings">
-                        <div class="medallion-ring"></div>
-                        <div class="medallion-ring"></div>
-                    </div>
-                    <div class="medallion-image">
-                        <img src="images/photo_2026-06-07_10-38-16.jpg" alt="Лесная Капля">
-                    </div>
-                </div>
-            </div>
-            <div class="artifact-info">
-                <div class="artifact-meta">
-                    <span class="artifact-number">Артефакт III</span>
-                    <span>✦</span>
-                    <span>Серия Рассвета</span>
-                </div>
-                <h3 class="artifact-title">
-                    Лесная
-                    <span class="italic">Капля</span>
-                </h3>
-                <div class="artifact-divider"></div>
-                <p class="artifact-text">
-                    Вдохновлено утренней росой на листьях папоротника. Матовое золото и природный агат создают гармонию дикой природы в ювелирной форме.
-                </p>
-                <div class="artifact-details">
-                    <div class="detail-item">
-                        <span class="detail-label">Материал</span>
-                        <span class="detail-value">Золото, агат</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
-                        <span class="detail-value">Рассвет</span>
-                    </div>
-                </div>
-                <a href="#" class="action-button">
-                    <span>Рассмотреть</span>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </article>
-
-        <!-- Артефакт IV -->
-        <article class="artifact">
-            <div class="artifact-visual">
-                <div class="medallion">
-                    <div class="medallion-glow"></div>
-                    <div class="medallion-rings">
-                        <div class="medallion-ring"></div>
-                        <div class="medallion-ring"></div>
-                    </div>
-                    <div class="medallion-image">
-                        <img src="images/photo_2026-06-07_10-39-00.jpg" alt="Звёздная Лоза">
-                    </div>
-                </div>
-            </div>
-            <div class="artifact-info">
-                <div class="artifact-meta">
-                    <span>Серия Сумерек</span>
-                    <span>✦</span>
-                    <span class="artifact-number">Артефакт IV</span>
-                </div>
-                <h3 class="artifact-title">
-                    Звёздная
-                    <span class="italic">Лоза</span>
-                </h3>
-                <div class="artifact-divider"></div>
-                <p class="artifact-text">
-                    Утонченное переплетение золотых нитей, вдохновленное дикими виноградниками. Каждое звено выковано вручную, создавая живую скульптуру для вашей шеи.
-                </p>
-                <div class="artifact-details">
-                    <div class="detail-item">
-                        <span class="detail-label">Материал</span>
-                        <span class="detail-value">Плетёное золото</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Эпоха</span>
-                        <span class="detail-value">Сумерки</span>
-                    </div>
-                </div>
-                <a href="#" class="action-button">
-                    <span>Рассмотреть</span>
-                    <span class="arrow">→</span>
-                </a>
-            </div>
-        </article>
-    </section>
-
-    <!-- СОЗВЕЗДИЕ -->
-    <section class="constellation" id="constellation">
-        <div class="constellation-label">✦ Карта Неба ✦</div>
-        <h2 class="constellation-title">Созвездие ваших украшений</h2>
-        <div class="star-map">
-            <div class="star star-1" data-name="Сиреневая Роза"></div>
-            <div class="star star-2" data-name="Побеги Омни"></div>
-            <div class="star star-3" data-name="Лесная Капля"></div>
-            <div class="star star-4" data-name="Звёздная Лоза"></div>
-            <div class="star star-5" data-name="Скоро..."></div>
-        </div>
-    </section>
-</main>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-ornament">✦ ❖ ✦</div>
-    <div class="footer-title">Necklaces</div>
-    <p class="footer-text">Дикая эстетика бисера и золота</p>
-    <div class="footer-bottom">
-        <p>© 2026 Beaded Necklaces</p>
-        <p>Создано с магией ✦</p>
-    </div>
-</footer>
-
-<!-- Лепестки -->
-<div class="petals-container" id="petals-container"></div>
-
-<script>
-// === КАСТОМНЫЙ КУРСОР ===
-const cursor = document.getElementById('cursor');
-const cursorTrail = document.getElementById('cursor-trail');
-let mouseX = 0, mouseY = 0;
-let trailX = 0, trailY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-});
-
-function animateTrail() {
-    trailX += (mouseX - trailX) * 0.15;
-    trailY += (mouseY - trailY) * 0.15;
-    cursorTrail.style.left = trailX + 'px';
-    cursorTrail.style.top = trailY + 'px';
-    requestAnimationFrame(animateTrail);
-}
-animateTrail();
-
-// Увеличение курсора при наведении на интерактивные элементы
-document.querySelectorAll('a, button, .medallion, .star').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.width = '40px';
-        cursor.style.height = '40px';
-        cursorTrail.style.width = '60px';
-        cursorTrail.style.height = '60px';
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        cursorTrail.style.width = '40px';
-        cursorTrail.style.height = '40px';
-    });
-});
-
-// === АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ===
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.artifact').forEach(el => observer.observe(el));
-
-// === ПАДАЮЩИЕ ЛЕПЕСТКИ ===
-function createPetal() {
-    const container = document.getElementById('petals-container');
-    const petal = document.createElement('div');
-    petal.classList.add('petal');
-    petal.style.left = Math.random() * 100 + 'vw';
-    const size = Math.random() * 15 + 10;
-    petal.style.width = size + 'px';
-    petal.style.height = size + 'px';
-    const duration = Math.random() * 6 + 16;
-    petal.style.animation = `fall ${duration}s linear forwards`;
-    petal.style.animationDelay = Math.random() * 5 + 's';
-    petal.style.opacity = Math.random() * 0.5 + 0.4;
-    container.appendChild(petal);
-    setTimeout(() => petal.remove(), (duration + 5) * 1000);
-}
-setInterval(createPetal, 500);
-for (let i = 0; i < 15; i++) {
-    setTimeout(createPetal, i * 200);
-}
-
-// === СВЕТЛЯЧКИ ===
-function createFirefly() {
-    const container = document.getElementById('fireflies');
-    const firefly = document.createElement('div');
-    firefly.classList.add('firefly');
-    firefly.style.left = Math.random() * 100 + 'vw';
-    firefly.style.top = (Math.random() * 50 + 50) + 'vh';
-    const size = Math.random() * 3 + 2;
-    firefly.style.width = size + 'px';
-    firefly.style.height = size + 'px';
-    const duration = Math.random() * 10 + 10;
-    firefly.style.animationDuration = duration + 's';
-    container.appendChild(firefly);
-    setTimeout(() => firefly.remove(), duration * 1000);
-}
-setInterval(createFirefly, 800);
-for (let i = 0; i < 10; i++) {
-    setTimeout(createFirefly, i * 300);
-}
-
-// === ЛИНИИ СОЗВЕЗДИЯ ===
-function drawConstellationLines() {
-    const map = document.querySelector('.star-map');
-    const stars = document.querySelectorAll('.star');
-    const connections = [[0,1],[1,2],[1,3],[3,4]];
-    
-    connections.forEach(([a, b]) => {
-        const starA = stars[a].getBoundingClientRect();
-        const starB = stars[b].getBoundingClientRect();
-        const mapRect = map.getBoundingClientRect();
-        
-        const x1 = starA.left + starA.width/2 - mapRect.left;
-        const y1 = starA.top + starA.height/2 - mapRect.top;
-        const x2 = starB.left + starB.width/2 - mapRect.left;
-        const y2 = starB.top + starB.height/2 - mapRect.top;
-        
-        const length = Math.sqrt((x2-x1)**2 + (y2-y1)**2);
-        const angle = Math.atan2(y2-y1, x2-x1) * 180 / Math.PI;
-        
-        const line = document.createElement('div');
-        line.classList.add('star-line');
-        line.style.left = x1 + 'px';
-        line.style.top = y1 + 'px';
-        line.style.width = length + 'px';
-        line.style.transform = `rotate(${angle}deg)`;
-        map.appendChild(line);
-    });
-}
-window.addEventListener('load', () => {
-    setTimeout(drawConstellationLines, 100);
-});
-window.addEventListener('resize', () => {
-    document.querySelectorAll('.star-line').forEach(l => l.remove());
-    drawConstellationLines();
-});
-</script>
-
-</body>
-</html>
+    inset: -10px;
+    z-index: 3;
+    pointer
