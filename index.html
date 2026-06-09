@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>NECKLACES — Созвездия зачарованного леса</title>
 <link rel="icon" type="image/png" href="images/logos.png">
 <style>
@@ -15,11 +15,9 @@
     --text-muted: #b8b09a;
     --accent-gold: #d4af37;
     --accent-gold-bright: #f4d03f;
-    --accent-mystic: #8b6fd4;
     --font-serif: 'Cinzel', serif;
     --font-display: 'Cormorant Garamond', serif;
     --font-sans: 'Plus Jakarta Sans', sans-serif;
-    --cb-transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,7 +30,12 @@ body {
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    cursor: none;
+}
+
+/* Отключаем кастомный курсор на мобильных */
+@media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor, .cursor-trail { display: none !important; }
 }
 
 /* === ЧИТАЕМОСТЬ ЗОЛОТОГО ТЕКСТА === */
@@ -90,62 +93,33 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 30px 6%;
+    padding: 20px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
-    background: linear-gradient(to bottom, rgba(10, 20, 16, 0.6), transparent);
+    background: linear-gradient(to bottom, rgba(10, 20, 16, 0.8), transparent);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
 }
 .logo {
     font-family: var(--font-serif);
-    font-size: 22px;
-    letter-spacing: 6px;
+    font-size: 16px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--text-light);
-    position: relative;
-    padding: 0 10px;
 }
-.logo::before, .logo::after {
-    content: '✦';
-    color: var(--accent-gold);
-    font-size: 10px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.7;
-}
-.logo::before { left: -15px; }
-.logo::after { right: -15px; }
 
-nav { display: flex; gap: 40px; }
+nav { display: flex; gap: 15px; }
 nav a {
     font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 4px;
+    font-size: 10px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--text-light);
-    opacity: 0.7;
-    transition: var(--cb-transition);
-    position: relative;
+    opacity: 0.8;
 }
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 50%;
-    width: 0;
-    height: 1px;
-    background: var(--accent-gold);
-    transition: all 0.4s ease;
-    transform: translateX(-50%);
-}
-nav a:hover { opacity: 1; color: var(--accent-gold); }
-nav a:hover::after { width: 100%; }
 
 /* === HERO === */
 .hero {
@@ -153,28 +127,23 @@ nav a:hover::after { width: 100%; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 120px 8% 60px;
+    padding: 100px 6% 40px;
     position: relative;
     z-index: 10;
-    gap: 60px;
+    gap: 40px;
 }
 
 .hero-content-left {
     flex: 1;
-    max-width: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 600px;
 }
 
 .hero-title {
     font-family: var(--font-serif);
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.05;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
     font-weight: 400;
-    text-shadow: 0 10px 40px rgba(0,0,0,0.8);
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 .hero-title .accent {
     color: var(--accent-gold);
@@ -182,51 +151,34 @@ nav a:hover::after { width: 100%; }
     font-family: var(--font-display);
     font-weight: 300;
     display: block;
-    font-size: 1.15em;
-    margin: 8px 0;
+    font-size: 1.1em;
 }
 
 .hero-divider-left {
-    width: 120px;
+    width: 80px;
     height: 1px;
     background: linear-gradient(90deg, var(--accent-gold), transparent);
-    margin-bottom: 30px;
-    position: relative;
-}
-.hero-divider-left::before {
-    content: '❖';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    color: var(--accent-gold);
-    background: var(--forest-dark);
-    padding-right: 12px;
-    font-size: 14px;
+    margin-bottom: 20px;
 }
 
 .hero-description {
     font-family: var(--font-display);
-    font-size: clamp(20px, 2.2vw, 26px);
-    line-height: 1.7;
+    font-size: clamp(16px, 2vw, 20px);
+    line-height: 1.6;
     color: var(--text-light);
     font-style: italic;
     font-weight: 300;
-    max-width: 600px;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.8);
-    opacity: 0.95;
 }
 
 .hero-description .gold {
     color: var(--accent-gold);
-    font-weight: 400;
 }
 
 /* === МАГИЧЕСКИЙ КРУГ === */
 .magic-circle {
     position: relative;
-    width: min(650px, 55vw);
-    height: min(650px, 55vw);
+    width: min(450px, 45vw);
+    height: min(450px, 45vw);
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -260,8 +212,7 @@ nav a:hover::after { width: 100%; }
     top: -6px; left: 50%;
     transform: translateX(-50%);
     color: var(--accent-gold);
-    font-size: 14px;
-    text-shadow: 0 0 12px rgba(212, 175, 55, 0.9);
+    font-size: 12px;
 }
 
 .center-artifact {
@@ -274,51 +225,13 @@ nav a:hover::after { width: 100%; }
     box-shadow:
         0 0 0 3px rgba(212, 175, 55, 0.9),
         0 0 0 8px rgba(10, 20, 16, 0.9),
-        0 0 0 9px rgba(212, 175, 55, 0.5),
-        0 0 40px rgba(244, 208, 63, 0.8),
-        0 0 80px rgba(212, 175, 55, 0.5),
-        inset 0 0 30px rgba(0, 0, 0, 0.4);
-    animation: centerGlow 4s ease-in-out infinite;
+        0 0 40px rgba(244, 208, 63, 0.6),
+        0 0 80px rgba(212, 175, 55, 0.4);
 }
 .center-artifact img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: saturate(1.1) contrast(1.05) brightness(1.05);
-}
-.center-artifact::before {
-    content: '';
-    position: absolute;
-    inset: -50%;
-    background: radial-gradient(circle,
-        rgba(244, 208, 63, 0.4) 0%,
-        rgba(212, 175, 55, 0.2) 40%,
-        transparent 70%
-    );
-    filter: blur(20px);
-    z-index: -1;
-    animation: sunPulse 4s ease-in-out infinite;
-}
-
-@keyframes centerGlow {
-    0%, 100% {
-        box-shadow:
-            0 0 0 3px rgba(212, 175, 55, 0.9),
-            0 0 0 8px rgba(10, 20, 16, 0.9),
-            0 0 0 9px rgba(212, 175, 55, 0.5),
-            0 0 40px rgba(244, 208, 63, 0.8),
-            0 0 80px rgba(212, 175, 55, 0.5),
-            inset 0 0 30px rgba(0, 0, 0, 0.4);
-    }
-    50% {
-        box-shadow:
-            0 0 0 3px rgba(244, 208, 63, 1),
-            0 0 0 8px rgba(10, 20, 16, 0.9),
-            0 0 0 9px rgba(244, 208, 63, 0.7),
-            0 0 60px rgba(244, 208, 63, 1),
-            0 0 120px rgba(212, 175, 55, 0.7),
-            inset 0 0 30px rgba(0, 0, 0, 0.4);
-    }
 }
 
 @keyframes rotate {
@@ -326,101 +239,70 @@ nav a:hover::after { width: 100%; }
     to { transform: rotate(360deg); }
 }
 
-/* === МАНИФЕСТ (МАГИЧЕСКАЯ КНИГА / СКРИЖАЛЬ) === */
+/* === МАНИФЕСТ === */
 .manifesto {
     position: relative;
     z-index: 10;
-    padding: 100px 8%;
+    padding: 60px 6%;
     display: flex;
     justify-content: center;
 }
 
 .manifesto-card {
     position: relative;
-    max-width: 900px;
+    max-width: 800px;
     width: 100%;
-    padding: 60px 50px;
+    padding: 40px 30px;
     text-align: center;
-    background: rgba(10, 20, 16, 0.65);
+    background: rgba(10, 20, 16, 0.7);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.25);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 4px;
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.6),
-        inset 0 0 80px rgba(10, 20, 16, 0.5),
-        0 0 40px rgba(212, 175, 55, 0.1);
-    animation: floatBook 6s ease-in-out infinite;
 }
 
-/* Декоративные уголки "древней книги" */
 .manifesto-card::before,
 .manifesto-card::after {
     content: '';
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     border: 2px solid var(--accent-gold);
-    transition: all 0.5s ease;
-    z-index: 2;
 }
 .manifesto-card::before {
     top: -2px; left: -2px;
     border-right: none; border-bottom: none;
-    border-top-left-radius: 4px;
 }
 .manifesto-card::after {
     bottom: -2px; right: -2px;
     border-left: none; border-top: none;
-    border-bottom-right-radius: 4px;
-}
-
-/* Внутренняя светящаяся рамка */
-.manifesto-inner-frame {
-    position: absolute;
-    inset: 15px;
-    border: 1px solid rgba(212, 175, 55, 0.15);
-    pointer-events: none;
-    z-index: 1;
-}
-
-@keyframes floatBook {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
 }
 
 .manifesto-label {
     font-family: var(--font-serif);
-    font-size: 13px;
-    letter-spacing: 6px;
+    font-size: 12px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 30px;
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
+    margin-bottom: 20px;
 }
 
 .manifesto-text {
     font-family: var(--font-display);
-    font-size: clamp(26px, 3.2vw, 38px);
+    font-size: clamp(18px, 2.5vw, 28px);
     line-height: 1.5;
     font-weight: 300;
     color: var(--text-light);
     font-style: italic;
-    position: relative;
-    z-index: 2;
 }
 .manifesto-text .gold {
     color: var(--accent-gold);
-    font-weight: 400;
 }
 .manifesto-text .dropcap {
     font-family: var(--font-serif);
-    font-size: 3.5em;
+    font-size: 2.5em;
     float: left;
     line-height: 0.9;
-    margin: 10px 15px 0 0;
+    margin: 5px 10px 0 0;
     color: var(--accent-gold);
     font-style: normal;
 }
@@ -429,108 +311,72 @@ nav a:hover::after { width: 100%; }
 .artifacts {
     position: relative;
     z-index: 10;
-    padding: 100px 5% 200px;
+    padding: 60px 5% 100px;
 }
 
 .artifacts-header {
     text-align: center;
-    margin-bottom: 120px;
+    margin-bottom: 50px;
 }
 .artifacts-label {
     font-family: var(--font-serif);
-    font-size: 13px;
-    letter-spacing: 6px;
+    font-size: 12px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 .artifacts-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 400;
-    letter-spacing: 3px;
 }
 
+/* АРТЕФАКТ - ДЕСКТОПНАЯ ВЕРСИЯ */
 .artifact {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 50px;
     align-items: center;
-    margin-bottom: 200px;
-    max-width: 1400px;
+    margin-bottom: 100px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0;
-    transform: translateY(60px);
-    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.artifact.visible {
-    opacity: 1;
-    transform: translateY(0);
+
+.artifact:nth-child(even) .artifact-visual {
+    order: 2;
 }
-.artifact:nth-child(even) .artifact-visual { order: 2; }
-.artifact:nth-child(even) .artifact-info { order: 1; text-align: right; }
-.artifact:nth-child(even) .artifact-meta::before { display: none; }
-.artifact:nth-child(even) .artifact-meta::after {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 1px;
-    background: var(--accent-gold);
-    vertical-align: middle;
-    margin-left: 15px;
+.artifact:nth-child(even) .artifact-info {
+    order: 1;
+    text-align: right;
 }
 
 .artifact-visual {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px;
+    padding: 40px;
 }
 
 .medallion {
     position: relative;
-    width: min(580px, 95%);
+    width: min(400px, 85%);
     aspect-ratio: 1/1;
 }
 
 .medallion::before {
     content: '';
     position: absolute;
-    inset: -30%;
+    inset: -25%;
     background: radial-gradient(circle,
-        rgba(244, 208, 63, 0.9) 0%,
-        rgba(255, 223, 100, 0.7) 15%,
-        rgba(244, 208, 63, 0.5) 30%,
-        rgba(212, 175, 55, 0.3) 50%,
-        transparent 75%
-    );
-    filter: blur(35px);
-    animation: neonPulse 3s ease-in-out infinite;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.medallion::after {
-    content: '';
-    position: absolute;
-    inset: -20%;
-    background: radial-gradient(circle,
-        rgba(255, 240, 150, 0.8) 0%,
-        rgba(244, 208, 63, 0.6) 20%,
+        rgba(244, 208, 63, 0.8) 0%,
         rgba(212, 175, 55, 0.4) 40%,
-        transparent 65%
+        transparent 70%
     );
-    filter: blur(25px);
-    animation: neonPulse 2.5s ease-in-out infinite 0.5s;
+    filter: blur(30px);
     z-index: 0;
     pointer-events: none;
-}
-
-@keyframes neonPulse {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.1); }
 }
 
 .medallion-image {
@@ -541,63 +387,45 @@ nav a:hover::after { width: 100%; }
     overflow: hidden;
     z-index: 2;
     box-shadow:
-        0 0 0 4px rgba(244, 208, 63, 0.9),
-        0 0 0 10px rgba(10, 20, 16, 0.9),
-        0 0 0 11px rgba(244, 208, 63, 0.5),
-        0 0 50px rgba(244, 208, 63, 0.8),
-        0 0 100px rgba(212, 175, 55, 0.5),
-        0 40px 100px rgba(0, 0, 0, 0.8),
-        inset 0 0 60px rgba(0, 0, 0, 0.3);
-    transition:
-        transform 1.2s cubic-bezier(0.19, 1, 0.22, 1),
-        box-shadow 1s ease,
-        border-radius 1s cubic-bezier(0.19, 1, 0.22, 1);
+        0 0 0 3px rgba(244, 208, 63, 0.8),
+        0 0 0 8px rgba(10, 20, 16, 0.9),
+        0 0 40px rgba(244, 208, 63, 0.6),
+        0 40px 80px rgba(0, 0, 0, 0.6);
+    transition: all 0.8s ease;
 }
 .medallion-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1.4s cubic-bezier(0.19, 1, 0.22, 1), filter 1s ease;
-    filter: saturate(1.05) contrast(1.08) brightness(1.02);
+    transition: transform 1s ease;
 }
 
 .medallion:hover .medallion-image {
     border-radius: 0;
-    transform: scale(1.15);
-    box-shadow:
-        0 0 0 4px rgba(255, 223, 100, 1),
-        0 0 0 10px rgba(10, 20, 16, 0.9),
-        0 0 0 11px rgba(255, 223, 100, 0.7),
-        0 0 80px rgba(244, 208, 63, 1),
-        0 0 150px rgba(212, 175, 55, 0.8),
-        0 40px 100px rgba(0, 0, 0, 0.8),
-        inset 0 0 60px rgba(0, 0, 0, 0.3);
+    transform: scale(1.08);
 }
 .medallion:hover .medallion-image img {
     transform: scale(1);
-    filter: saturate(1.2) contrast(1.15) brightness(1.08);
 }
 
 .artifact-info {
-    position: relative;
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
 .artifact-meta {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 12px;
     font-family: var(--font-serif);
-    font-size: 14px;
-    letter-spacing: 5px;
+    font-size: 11px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     color: var(--accent-gold);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 .artifact-meta::before {
     content: '';
-    display: inline-block;
-    width: 40px;
+    width: 30px;
     height: 1px;
     background: var(--accent-gold);
 }
@@ -605,16 +433,14 @@ nav a:hover::after { width: 100%; }
 .artifact-number {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 18px;
-    opacity: 0.8;
+    font-size: 14px;
 }
 
 .artifact-title {
     font-family: var(--font-serif);
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
     font-weight: 400;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
+    margin-bottom: 12px;
     line-height: 1.2;
 }
 .artifact-title .italic {
@@ -628,65 +454,49 @@ nav a:hover::after { width: 100%; }
 }
 
 .artifact-divider {
-    width: 60px;
+    width: 40px;
     height: 1px;
     background: var(--accent-gold);
-    margin: 30px 0;
-    position: relative;
-}
-.artifact-divider::before {
-    content: '◆';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--accent-gold);
-    font-size: 8px;
-    background: var(--forest-dark);
-    padding: 0 10px;
+    margin: 20px 0;
 }
 
 .artifact-text {
     font-family: var(--font-display);
-    font-size: clamp(18px, 1.6vw, 22px);
-    line-height: 1.8;
+    font-size: clamp(15px, 1.8vw, 18px);
+    line-height: 1.6;
     color: var(--text-light);
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     font-weight: 300;
-    max-width: 550px;
-    padding: 25px 30px;
+    padding: 20px;
     background: rgba(10, 20, 16, 0.6);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 6px;
 }
-.artifact:nth-child(even) .artifact-text { margin-left: auto; }
 
 .artifact-details {
     display: flex;
-    gap: 40px;
-    margin-bottom: 40px;
-    padding-top: 30px;
+    gap: 25px;
+    margin-bottom: 25px;
+    padding-top: 20px;
     border-top: 1px solid rgba(212, 175, 55, 0.15);
 }
-.artifact:nth-child(even) .artifact-details { justify-content: flex-end; }
 .detail-item {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 4px;
 }
 .detail-label {
     font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 9px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--accent-gold);
     opacity: 0.8;
 }
 .detail-value {
     font-family: var(--font-display);
-    font-size: 20px;
+    font-size: 16px;
     color: var(--text-light);
     font-style: italic;
 }
@@ -694,80 +504,67 @@ nav a:hover::after { width: 100%; }
 .action-button {
     display: inline-flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
+    gap: 10px;
     font-family: var(--font-serif);
-    font-size: 12px;
-    letter-spacing: 4px;
+    font-size: 10px;
+    letter-spacing: 3px;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--text-light);
-    padding: 18px 35px;
+    padding: 14px 25px;
     border: 1px solid rgba(212, 175, 55, 0.4);
     background: rgba(212, 175, 55, 0.05);
     backdrop-filter: blur(10px);
-    transition: var(--cb-transition);
-    position: relative;
-    overflow: hidden;
-}
-.action-button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-    transition: left 0.6s ease;
+    transition: all 0.4s ease;
 }
 .action-button:hover {
     border-color: var(--accent-gold);
     color: var(--accent-gold);
     background: rgba(212, 175, 55, 0.1);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+    transform: translateY(-2px);
 }
-.action-button:hover::before { left: 100%; }
 .action-button .arrow {
-    transition: transform 0.4s ease;
+    transition: transform 0.3s ease;
 }
-.action-button:hover .arrow { transform: translateX(5px); }
+.action-button:hover .arrow { transform: translateX(4px); }
 
 /* === FOOTER === */
 footer {
     position: relative;
     z-index: 10;
-    padding: 100px 8% 60px;
+    padding: 60px 6% 40px;
     text-align: center;
 }
 .footer-ornament {
     font-family: var(--font-serif);
     color: var(--accent-gold);
-    font-size: 24px;
-    margin-bottom: 30px;
-    letter-spacing: 15px;
-    opacity: 0.6;
+    font-size: 18px;
+    margin-bottom: 20px;
+    letter-spacing: 8px;
 }
 .footer-title {
     font-family: var(--font-serif);
-    font-size: 18px;
-    letter-spacing: 8px;
+    font-size: 14px;
+    letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    color: var(--text-light);
+    margin-bottom: 12px;
 }
 .footer-text {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 16px;
+    font-size: 14px;
     color: var(--text-muted);
-    letter-spacing: 2px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
 }
 .footer-bottom {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 20px;
     font-family: var(--font-serif);
-    font-size: 11px;
-    letter-spacing: 3px;
+    font-size: 9px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--text-muted);
     opacity: 0.6;
@@ -783,72 +580,165 @@ footer {
 }
 .firefly {
     position: absolute;
-    width: 4px;
-    height: 4px;
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
     background: var(--accent-gold-bright);
-    box-shadow: 0 0 10px var(--accent-gold-bright), 0 0 20px var(--accent-gold);
+    box-shadow: 0 0 8px var(--accent-gold-bright);
     opacity: 0;
-    animation: fireflyFloat 15s linear infinite;
+    animation: fireflyFloat 12s linear infinite;
 }
 @keyframes fireflyFloat {
     0% { transform: translate(0, 0); opacity: 0; }
     10% { opacity: 1; }
-    50% { opacity: 0.6; }
+    50% { opacity: 0.5; }
     90% { opacity: 1; }
     100% { transform: translate(100vw, -100vh); opacity: 0; }
 }
 
-/* === АДАПТИВНОСТЬ === */
-@media (max-width: 960px) {
+/* =========================================
+   === МОБИЛЬНАЯ ВЕРСИЯ (до 768px) ===
+   ========================================= */
+@media (max-width: 768px) {
+    /* Отключаем курсор */
     body { cursor: auto; }
-    .cursor, .cursor-trail { display: none; }
-    header { padding: 20px 5%; }
-    nav { gap: 20px; }
-    nav a { font-size: 10px; letter-spacing: 2px; }
-    .logo { font-size: 18px; letter-spacing: 4px; }
+    .cursor, .cursor-trail { display: none !important; }
 
+    /* Hero - в колонку */
     .hero {
         flex-direction: column;
-        padding: 120px 6% 60px;
-        gap: 40px;
+        padding: 90px 4% 30px;
+        text-align: center;
+        gap: 30px;
     }
     .hero-content-left {
         max-width: 100%;
-        text-align: left;
+    }
+    .hero-divider-left {
+        margin: 0 auto 15px;
+    }
+    .hero-description {
+        text-align: center;
     }
     .magic-circle {
-        width: 80vw;
-        height: 80vw;
-        max-width: 450px;
+        width: 70vw;
+        height: 70vw;
+        max-width: 300px;
     }
-    .hero-description { font-size: 20px; max-width: 100%; }
 
-    .manifesto { padding: 80px 6%; }
-    .manifesto-card { padding: 40px 25px; }
-    .manifesto-text { font-size: 24px; }
+    /* Манифест */
+    .manifesto { padding: 40px 4%; }
+    .manifesto-card {
+        padding: 30px 20px;
+    }
+    .manifesto-text {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    .manifesto-text .dropcap {
+        font-size: 2em;
+    }
+
+    /* АРТЕФАКТЫ - В СТОЛБЕЦ (картинка сверху, текст снизу) */
+    .artifacts {
+        padding: 40px 4% 80px;
+    }
+    .artifacts-header { margin-bottom: 40px; }
 
     .artifact {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 60px;
+        text-align: center;
     }
-    .artifact:nth-child(even) .artifact-visual { order: 1; }
-    .artifact:nth-child(even) .artifact-info { order: 2; text-align: center; }
-    .artifact:nth-child(even) .artifact-meta { justify-content: center; }
-    .artifact:nth-child(even) .artifact-meta::after { display: none; }
-    .artifact:nth-child(even) .artifact-text { margin: 0 auto 40px; }
-    .artifact:nth-child(even) .artifact-details { justify-content: center; }
 
-    .artifact-visual { padding: 30px; }
-    .medallion { width: 85%; max-width: 420px; }
+    /* Всегда картинка сверху, текст снизу */
+    .artifact-visual {
+        order: 1 !important;
+        padding: 20px;
+    }
+    .artifact-info {
+        order: 2 !important;
+        text-align: center !important;
+        padding: 0;
+    }
+
+    .medallion {
+        width: 75%;
+        max-width: 280px;
+    }
+
+    .artifact-meta {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .artifact-meta::before {
+        display: none;
+    }
+
+    .artifact-title {
+        font-size: 1.6rem;
+    }
+
+    .artifact-divider {
+        margin: 15px auto;
+    }
+
+    /* Уменьшаем описание */
+    .artifact-text {
+        font-size: 15px;
+        line-height: 1.5;
+        padding: 15px;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .artifact-details {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .action-button {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    /* Футер */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 480px) {
+    .hero { padding: 80px 3% 25px; }
+    .hero-title { font-size: 1.8rem; }
+    .hero-description { font-size: 15px; }
+
+    .manifesto-card { padding: 25px 15px; }
+    .manifesto-text { font-size: 15px; }
+
+    .artifact { margin-bottom: 50px; }
+    .artifact-visual { padding: 15px; }
+    .medallion { width: 85%; max-width: 250px; }
 
     .artifact-text {
-        padding: 20px 25px;
-        font-size: 18px;
+        font-size: 14px;
+        padding: 12px;
     }
 
-    .footer-bottom { flex-direction: column; gap: 15px; }
+    .artifact-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .detail-item {
+        align-items: center;
+    }
 }
 </style>
 </head>
@@ -871,7 +761,6 @@ footer {
     <a href="#" class="logo"><span>DARIA ROZENVASSER</span></a>
     <nav>
         <a href="#artifacts">Артефакты</a>
-        <a href="#">О нас</a>
         <a href="#">Контакты</a>
     </nav>
 </header>
@@ -886,26 +775,26 @@ footer {
                 зачарованного леса
             </h1>
             <div class="hero-divider-left"></div>
-            
+            <p class="hero-description">
+                В тишине <span class="gold gold-text-contrast">первозданных лесов</span>, где свет луны переплетается с туманом, рождаются украшения, хранящие <span class="gold gold-text-contrast">древнюю магию</span> природы.
+            </p>
         </div>
         <div class="magic-circle">
             <div class="orbit orbit-1"></div>
             <div class="orbit orbit-2"></div>
             <div class="orbit orbit-3"></div>
             <div class="center-artifact">
-                <img src="images/logos.png" alt="Центральный артефакт">
+                <img src="images/logos.png" alt="Логотип">
             </div>
         </div>
     </section>
 
-    <!-- МАНИФЕСТ (МАГИЧЕСКАЯ КНИГА) -->
+    <!-- МАНИФЕСТ -->
     <section class="manifesto">
         <div class="manifesto-card">
-            <div class="manifesto-inner-frame"></div>
             <div class="manifesto-label gold-text-contrast">✦ Философия ✦</div>
             <p class="manifesto-text">
-                <span class="dropcap gold-text-contrast">К</span>
-                аждое украшение — это <span class="gold gold-text-contrast">заклинание в золоте</span>, произнесённое руками мастера. Мы не создаём аксессуары — мы куём амулеты, в которых живёт <span class="gold gold-text-contrast">дыхание леса</span>, шёпот древних деревьев и свет далёких созвездий.
+                <span class="dropcap gold-text-contrast">К</span>аждое украшение — это <span class="gold gold-text-contrast">заклинание в золоте</span>, произнесённое руками мастера. Мы не создаём аксессуары — мы куём амулеты, в которых живёт <span class="gold gold-text-contrast">дыхание леса</span>.
             </p>
         </div>
     </section>
@@ -938,7 +827,7 @@ footer {
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
-                    Тончайшая анатомическая формовка металлических лепестков. Ювелирный японский микробисер оплетает центральный элемент — глубокий природный агат, улавливающий отблески лесного солнца.
+                    Тончайшая анатомическая формовка металлических лепестков. Ювелирный японский микробисер оплетает центральный элемент — глубокий природный агат.
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
@@ -978,7 +867,7 @@ footer {
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
-                    Линейный концепт, в точности повторяющий пластику дикой виноградной лозы. Живое переплетение матового золота и фактурных изгибов, созданное для интеграции в повседневный образ.
+                    Линейный концепт, в точности повторяющий пластику дикой виноградной лозы. Живое переплетение матового золота и фактурных изгибов.
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
@@ -1018,7 +907,7 @@ footer {
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
-                    Вдохновлено утренней росой на листьях папоротника. Матовое золото и природный агат создают гармонию дикой природы в ювелирной форме.
+                    Вдохновлено утренней росой на листьях папоротника. Матовое золото и природный агат создают гармонию дикой природы.
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
@@ -1058,7 +947,7 @@ footer {
                 </h3>
                 <div class="artifact-divider"></div>
                 <p class="artifact-text">
-                    Утонченное переплетение золотых нитей, вдохновленное дикими виноградниками. Каждое звено выковано вручную, создавая живую скульптуру для вашей шеи.
+                    Утонченное переплетение золотых нитей, вдохновленное дикими виноградниками. Каждое звено выковано вручную.
                 </p>
                 <div class="artifact-details">
                     <div class="detail-item">
@@ -1091,53 +980,44 @@ footer {
 </footer>
 
 <script>
-// === КАСТОМНЫЙ КУРСОР ===
+// === КАСТОМНЫЙ КУРСОР (только для десктопа) ===
 const cursor = document.getElementById('cursor');
 const cursorTrail = document.getElementById('cursor-trail');
 let mouseX = 0, mouseY = 0;
 let trailX = 0, trailY = 0;
 
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
-});
+if (window.matchMedia("(hover: hover)").matches) {
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
 
-function animateTrail() {
-    trailX += (mouseX - trailX) * 0.15;
-    trailY += (mouseY - trailY) * 0.15;
-    cursorTrail.style.left = trailX + 'px';
-    cursorTrail.style.top = trailY + 'px';
-    requestAnimationFrame(animateTrail);
+    function animateTrail() {
+        trailX += (mouseX - trailX) * 0.15;
+        trailY += (mouseY - trailY) * 0.15;
+        cursorTrail.style.left = trailX + 'px';
+        cursorTrail.style.top = trailY + 'px';
+        requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+
+    document.querySelectorAll('a, button, .medallion').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursorTrail.style.width = '60px';
+            cursorTrail.style.height = '60px';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.width = '20px';
+            cursor.style.height = '20px';
+            cursorTrail.style.width = '40px';
+            cursorTrail.style.height = '40px';
+        });
+    });
 }
-animateTrail();
-
-document.querySelectorAll('a, button, .medallion').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.width = '40px';
-        cursor.style.height = '40px';
-        cursorTrail.style.width = '60px';
-        cursorTrail.style.height = '60px';
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        cursorTrail.style.width = '40px';
-        cursorTrail.style.height = '40px';
-    });
-});
-
-// === АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ ===
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0.15 });
-
-document.querySelectorAll('.artifact').forEach(el => observer.observe(el));
 
 // === СВЕТЛЯЧКИ ===
 function createFirefly() {
@@ -1155,7 +1035,7 @@ function createFirefly() {
     setTimeout(() => firefly.remove(), duration * 1000);
 }
 setInterval(createFirefly, 800);
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 8; i++) {
     setTimeout(createFirefly, i * 300);
 }
 </script>
